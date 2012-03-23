@@ -70,6 +70,7 @@
 ./threads/stdarg.h
 ./threads/thread.cc
 ./threads/utility.cc
+./threads/threadtest.h
 ./threads/synch.h
 ./threads/synchlist.cc
 ./threads/list.h

@@ -9,11 +9,35 @@
 // All rights reserved.  See copyright.h for copyright notice and limitation 
 // of liability and disclaimer of warranty provisions.
 
-#include "copyright.h"
-#include "system.h"
-
 // testnum is set in main.cc
+//
+#include "system.h"
+#include "copyright.h"
+#include "threadtest.h"
+#include "synch.h"
+//----------------------------------------------------------------------
+//param used in producer and consumer
+//
+//
+//
 int testnum = 1;
+int con_number = 0;
+Lock* mutex = new Lock("mutex");
+Lock* producer_lock = new Lock("prol");
+Lock* consumer_lock = new Lock("conl");
+Condition* producer_condition = new Condition("proc");
+Condition* consumer_condition = new Condition("conc");
+//----------------------------------------------------------------------
+//params used in send and receiver
+//
+//
+//
+//
+int sender_id = -1;
+
+
+
+
 
 //----------------------------------------------------------------------
 // SimpleThread
@@ -31,7 +55,7 @@ SimpleThread(int which)
     
     for (num = 0; num < 5; num++) {
 	printf("*** thread %d looped %d times\n", currentThread -> getThreadId(), num);
-//        currentThread->Yield();
+        currentThread->Yield();
     }
 }
 
@@ -93,4 +117,119 @@ ThreadTest()
 	break;
     }
 }
+
+void producer(int a)
+{
+	for (int i = 1; i < 16; ++ i)	
+	{
+		mutex -> Acquire();	
+
+		while (con_number != 0)
+		{
+			producer_lock -> Acquire();
+			producer_condition -> Wait(producer_lock);
+			producer_lock -> Release();
+		}
+
+		con_number = i;
+		printf("Producer %d produced %d!!\n", currentThread -> getThreadId(), i);
+
+		consumer_lock -> Acquire();
+		consumer_condition -> Signal(consumer_lock);
+		consumer_lock -> Release();
+		mutex -> Release();
+
+		currentThread -> Yield();
+	}
+
+}
+void consumer(int a)
+{
+	int i;
+	for (int i = 1; i < 16; ++ i)
+	{
+		mutex -> Acquire();
+		while (con_number == 0)
+		{
+			consumer_lock -> Acquire();
+			consumer_condition -> Wait(consumer_lock);
+			consumer_lock -> Release();
+		}
+
+		con_number = 0;
+		printf("Consumer %d consumed %d!\n", currentThread -> getThreadId(), i);
+
+		producer_lock -> Acquire();
+		producer_condition-> Signal(producer_lock);	
+		producer_lock -> Release();
+		mutex -> Release();
+		currentThread -> Yield();
+	}
+}
+void ForkTest()
+{
+	Thread *t1 = new Thread("producer");
+	Thread *t2 = new Thread("consumer");
+
+
+	t1 -> Fork(producer, 0);
+	t2 -> Fork(consumer, 0);
+}
+
+
+
+void PriorityTest()
+{
+	int priority[10] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 10};
+	Thread* t[10];
+
+	for (int i = 0; i < 10; ++ i)
+	{
+
+		char thread_name[128];
+		sprintf(thread_name, "%d", i);
+		t[i] = new Thread(thread_name);
+
+		t[i] -> setPriority(priority[i]);
+
+		t[i] -> Fork(SimpleThread, t[i] -> getThreadId());
+
+	}
+
+}
+
+void sender(int a)
+{
+	char *hello = "hello world";
+	currentThread -> Send(hello);
+	sender_id = currentThread -> getThreadId();
+	printf("Send Data:%s\n", hello);
+
+}
+void recver(int a)
+{
+	char *recv_data;
+	if (sender_id != -1)
+	{
+		recv_data = currentThread -> Receive(sender_id);
+		printf("Receiver Data:%s\n", recv_data);
+	}
+}
+void SendRecvTest()
+{
+
+	Thread *t1 = new Thread("producer");
+	Thread *t2 = new Thread("consumer");
+
+
+	t1 -> Fork(sender, 0);
+	t2 -> Fork(recver, 0);
+
+}
+
+
+
+
+
+
 

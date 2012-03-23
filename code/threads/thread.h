@@ -101,13 +101,20 @@ class Thread {
     
     void CheckOverflow();   			// Check if thread has 
 						// overflowed its stack
+    void setPriority(int priority);
+
     void setStatus(ThreadStatus st) { status = st; }
     char* getName() { return (name); }
     int getThreadId(){
     	return thread_id;
     }
-    void Print() { printf("%s, ", name); }
+    int getPriority(){
+    	return priority;
+    }
+    void Print() { printf("%d, ", thread_id); }
 
+    void Send(char *send_data);
+    char * Receive(int thread_id);
   private:
     // some of the private data for this class is listed above
     
@@ -115,14 +122,17 @@ class Thread {
 					// NULL if this is the main thread
 					// (If NULL, don't deallocate stack)
     ThreadStatus status;		// ready, running or blocked
-    char* name;
+    char* name; 			//线程信息
     int thread_id;
     int user_id;
+    int priority;
+    const static int max_priority = 16;
+    const static int min_priority = 0;
+
 
     void StackAllocate(VoidFunctionPtr func, int arg);
     					// Allocate a stack for thread.
 					// Used internally by Fork()
-
 #ifdef USER_PROGRAM
 // A thread running a user program actually has *two* sets of CPU registers -- 
 // one for its state while executing user code, one for its state 

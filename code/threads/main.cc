@@ -60,6 +60,9 @@ extern int testnum;
 // External functions used by this file
 
 extern void ThreadTest(void), Copy(char *unixFile, char *nachosFile);
+extern void PriorityTest();
+extern void SendRecvTest();
+extern void ForkTest();
 extern void Print(char *file), PerformanceTest(void);
 extern void StartProcess(char *file), ConsoleTest(char *in, char *out);
 extern void MailTest(int networkID);
@@ -98,8 +101,11 @@ int main(int argc, char **argv)
         break;
       }
     }
-
-    ThreadTest();
+//    PriorityTest();
+   //ForkTest();
+   // ThreadTest();
+   SendRecvTest();
+   
 #endif
 
     DEBUG('z', "My Test %d", argc);

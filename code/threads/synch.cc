@@ -100,13 +100,69 @@ Semaphore::V()
 // Dummy functions -- so we can compile our later assignments 
 // Note -- without a correct implementation of Condition::Wait(), 
 // the test case in the network assignment won't work!
-Lock::Lock(char* debugName) {}
-Lock::~Lock() {}
-void Lock::Acquire() {}
-void Lock::Release() {}
+Lock::Lock(char* debugName) {
+	name = debugName;
+	sem = new Semaphore(debugName, 1);
+	lockUser = NULL;
+}
+Lock::~Lock() {
+	delete sem;
+}
+void Lock::Acquire() {
+	IntStatus oldLevel = interrupt -> SetLevel(IntOff);
+	sem -> P();
+	lockUser = currentThread;
+	(void)interrupt -> SetLevel(oldLevel);
+}
+void Lock::Release() {
+	IntStatus oldLevel = interrupt -> SetLevel(IntOff);
+	ASSERT(isHeldByCurrentThread());
+	sem -> V();
+	lockUser = NULL;
+	(void)interrupt -> SetLevel(oldLevel);
+}
+bool Lock::isHeldByCurrentThread()
+{
+	return currentThread == lockUser;
+}
 
-Condition::Condition(char* debugName) { }
-Condition::~Condition() { }
-void Condition::Wait(Lock* conditionLock) { ASSERT(FALSE); }
-void Condition::Signal(Lock* conditionLock) { }
+Condition::Condition(char* debugName) { 
+	name = debugName;
+	queue = new List();
+}
+Condition::~Condition() { 
+	delete queue;
+}
+void Condition::Wait(Lock* conditionLock) {
+	IntStatus oldLevel  = interrupt -> SetLevel(IntOff);
+
+	ASSERT(conditionLock -> isHeldByCurrentThread());
+
+	if (queue -> IsEmpty())
+	{
+		lock = conditionLock;
+	}
+
+	ASSERT(lock == conditionLock);
+	queue -> Append(currentThread);
+	
+	conditionLock -> Release();
+		currentThread -> Sleep();
+	conditionLock -> Acquire();
+
+	(void)interrupt -> SetLevel(oldLevel);
+}
+void Condition::Signal(Lock* conditionLock) { 
+	IntStatus oldLevel  = interrupt -> SetLevel(IntOff);
+
+	ASSERT(conditionLock -> isHeldByCurrentThread());
+	if (!queue -> IsEmpty())
+	{
+		ASSERT(lock == conditionLock);
+		Thread* nextThread = (Thread *)queue -> Remove();
+		scheduler -> ReadyToRun(nextThread);
+	}
+
+	(void)interrupt -> SetLevel(oldLevel);
+}
 void Condition::Broadcast(Lock* conditionLock) { }

@@ -79,6 +79,8 @@ class Lock {
 
   private:
     char* name;				// for debugging
+    Thread* lockUser;
+    Semaphore* sem;  
     // plus some other stuff you'll need to define
 };
 
@@ -131,6 +133,8 @@ class Condition {
 
   private:
     char* name;
+    List* queue;
+    Lock* lock;
     // plus some other stuff you'll need to define
 };
 #endif // SYNCH_H

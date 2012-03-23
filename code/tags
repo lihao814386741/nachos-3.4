@@ -26,7 +26,7 @@ ASSERT	threads/utility.h	76;"	d
 ASSOC	bin/disasm.c	/^int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;$/;"	v
 ASSOC	bin/main.c	/^int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;$/;"	v
 Abort	machine/sysdep.cc	/^Abort()$/;"	f
-Acquire	threads/synch.cc	/^void Lock::Acquire() {}$/;"	f	class:Lock
+Acquire	threads/synch.cc	/^void Lock::Acquire() {$/;"	f	class:Lock
 Add	filesys/directory.cc	/^Directory::Add(char *name, int newSector)$/;"	f	class:Directory
 AddrSpace	userprog/addrspace.cc	/^AddrSpace::AddrSpace(OpenFile *executable)$/;"	f	class:AddrSpace
 AddrSpace	userprog/addrspace.h	/^class AddrSpace {$/;"	c
@@ -39,7 +39,7 @@ AssignNameToSocket	machine/sysdep.cc	/^AssignNameToSocket(char *socketName, int 
 B	test/matmult.c	/^int B[Dim][Dim];$/;"	v
 BCOND	machine/mipssim.h	106;"	d
 BITMAP_H	userprog/bitmap.h	16;"	d
-BLOCKED	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED };$/;"	e	enum:ThreadStatus
+BLOCKED	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED, SUSPENDING};$/;"	e	enum:ThreadStatus
 BadVAddrReg	machine/machine.h	70;"	d
 BitMap	userprog/bitmap.cc	/^BitMap::BitMap(int nitems) $/;"	f	class:BitMap
 BitMap	userprog/bitmap.h	/^class BitMap {$/;"	c
@@ -80,7 +80,7 @@ Close	test/start.s	/^Close:$/;"	l
 Close	test/strt.s	/^Close:$/;"	l
 CloseSocket	machine/sysdep.cc	/^CloseSocket(int sockID)$/;"	f
 ComputeLatency	machine/disk.cc	/^Disk::ComputeLatency(int newSector, bool writing)$/;"	f	class:Disk
-Condition	threads/synch.cc	/^Condition::Condition(char* debugName) { }$/;"	f	class:Condition
+Condition	threads/synch.cc	/^Condition::Condition(char* debugName) { $/;"	f	class:Condition
 Condition	threads/synch.h	/^class Condition {$/;"	c
 Console	machine/console.cc	/^Console::Console(char *readFile, char *writeFile, VoidFunctionPtr readAvail, $/;"	f	class:Console
 Console	machine/console.h	/^class Console {$/;"	c
@@ -170,6 +170,7 @@ Finish	threads/thread.cc	/^Thread::Finish ()$/;"	f	class:Thread
 Fork	test/start.s	/^Fork:$/;"	l
 Fork	test/strt.s	/^Fork:$/;"	l
 Fork	threads/thread.cc	/^Thread::Fork(VoidFunctionPtr func, int arg)$/;"	f	class:Thread
+ForkTest	threads/threadtest.cc	/^void ForkTest()$/;"	f
 FreeMapFileSize	filesys/filesys.cc	63;"	d	file:
 FreeMapSector	filesys/filesys.cc	57;"	d	file:
 GCCDIR	test/Makefile	/^GCCDIR = ..\/..\/..\/gnu-decstation-ultrix\/decstation-ultrix\/2.95.3\/$/;"	m
@@ -315,7 +316,7 @@ Interrupt	machine/interrupt.h	/^class Interrupt {$/;"	c
 InterruptEnable	threads/thread.cc	/^static void InterruptEnable() { interrupt->Enable(); }$/;"	f	file:
 IsEmpty	threads/list.cc	/^List::IsEmpty() $/;"	f	class:List
 JFMT	machine/mipssim.h	109;"	d
-JUST_CREATED	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED };$/;"	e	enum:ThreadStatus
+JUST_CREATED	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED, SUSPENDING};$/;"	e	enum:ThreadStatus
 Join	test/start.s	/^Join:$/;"	l
 Join	test/strt.s	/^Join:$/;"	l
 LD	bin/Makefile	/^LD=gcc$/;"	m
@@ -341,7 +342,7 @@ ListElement	threads/list.h	/^class ListElement {$/;"	c
 LoReg	machine/machine.h	64;"	d
 LoadReg	machine/machine.h	68;"	d
 LoadValueReg	machine/machine.h	69;"	d
-Lock	threads/synch.cc	/^Lock::Lock(char* debugName) {}$/;"	f	class:Lock
+Lock	threads/synch.cc	/^Lock::Lock(char* debugName) {$/;"	f	class:Lock
 Lock	threads/synch.h	/^class Lock {$/;"	c
 Lseek	machine/sysdep.cc	/^Lseek(int fd, int offset, int whence)$/;"	f
 MACHINE_H	machine/machine.h	22;"	d
@@ -528,11 +529,12 @@ Print	filesys/filesys.cc	/^FileSystem::Print()$/;"	f	class:FileSystem
 Print	filesys/fstest.cc	/^Print(char *name)$/;"	f
 Print	machine/stats.cc	/^Statistics::Print()$/;"	f	class:Statistics
 Print	threads/scheduler.cc	/^Scheduler::Print()$/;"	f	class:Scheduler
-Print	threads/thread.h	/^    void Print() { printf("%s, ", name); }$/;"	f	class:Thread
+Print	threads/thread.h	/^    void Print() { printf("%d, ", thread_id); }$/;"	f	class:Thread
 Print	userprog/bitmap.cc	/^BitMap::Print() $/;"	f	class:BitMap
 PrintHeader	network/post.cc	/^PrintHeader(PacketHeader pktHdr, MailHeader mailHdr)$/;"	f	file:
 PrintPending	machine/interrupt.cc	/^PrintPending(int arg)$/;"	f	file:
 PrintSector	machine/disk.cc	/^PrintSector (bool writing, int sector, char *data)$/;"	f	file:
+PriorityTest	threads/threadtest.cc	/^void PriorityTest()$/;"	f
 Put	network/post.cc	/^MailBox::Put(PacketHeader pktHdr, MailHeader mailHdr, char *data)$/;"	f	class:MailBox
 PutChar	machine/console.cc	/^Console::PutChar(char ch)$/;"	f	class:Console
 R	bin/d.c	27;"	d	file:
@@ -541,7 +543,7 @@ RAND	bin/disasm.c	/^int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;$/;"	v
 RAND	bin/main.c	/^int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;$/;"	v
 RD	bin/execute.c	/^RD(i)$/;"	f
 RD	machine/mipssim.h	/^enum RegType { NONE, RS, RT, RD, EXTRA }; $/;"	e	enum:RegType
-READY	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED };$/;"	e	enum:ThreadStatus
+READY	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED, SUSPENDING};$/;"	e	enum:ThreadStatus
 RFMT	machine/mipssim.h	110;"	d
 RS	bin/execute.c	/^RS(i)$/;"	f
 RS	machine/mipssim.h	/^enum RegType { NONE, RS, RT, RD, EXTRA }; $/;"	e	enum:RegType
@@ -549,7 +551,7 @@ RT	bin/execute.c	/^RT(i)$/;"	f
 RT	machine/mipssim.h	/^enum RegType { NONE, RS, RT, RD, EXTRA }; $/;"	e	enum:RegType
 RTNVAL	threads/switch.c	/^	.EXPORT SWITCH,ENTRY,PRIV_LEV=3,RTNVAL=GR$/;"	v
 RTNVAL	threads/switch.c	/^	.EXPORT ThreadRoot,ENTRY,PRIV_LEV=3,RTNVAL=GR$/;"	v
-RUNNING	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED };$/;"	e	enum:ThreadStatus
+RUNNING	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED, SUSPENDING};$/;"	e	enum:ThreadStatus
 RaiseException	machine/machine.cc	/^Machine::RaiseException(ExceptionType which, int badVAddr)$/;"	f	class:Machine
 Random	machine/sysdep.cc	/^Random()$/;"	f
 RandomInit	machine/sysdep.cc	/^RandomInit(unsigned seed)$/;"	f
@@ -576,11 +578,12 @@ ReadStruct	bin/coff2noff.c	67;"	d	file:
 ReadyToRun	threads/scheduler.cc	/^Scheduler::ReadyToRun (Thread *thread)$/;"	f	class:Scheduler
 Receive	machine/network.cc	/^Network::Receive(char* data)$/;"	f	class:Network
 Receive	network/post.cc	/^PostOffice::Receive(int box, PacketHeader *pktHdr, $/;"	f	class:PostOffice
+Receive	threads/thread.cc	/^Thread::Receive(int thread_id)$/;"	f	class:Thread
 Reg	bin/execute.c	/^int Reg[32];			\/* GPR's *\/$/;"	v
 RegType	machine/mipssim.h	/^enum RegType { NONE, RS, RT, RD, EXTRA }; $/;"	g
 Regtrace	bin/disasm.c	/^int TRACE, Traptrace, Regtrace;$/;"	v
 Regtrace	bin/main.c	/^int TRACE, Traptrace, Regtrace;$/;"	v
-Release	threads/synch.cc	/^void Lock::Release() {}$/;"	f	class:Lock
+Release	threads/synch.cc	/^void Lock::Release() {$/;"	f	class:Lock
 Remove	filesys/directory.cc	/^Directory::Remove(char *name)$/;"	f	class:Directory
 Remove	filesys/filesys.cc	/^FileSystem::Remove(char *name)$/;"	f	class:FileSystem
 Remove	filesys/filesys.h	/^    bool Remove(char *name) { return Unlink(name) == 0; }$/;"	f	class:FileSystem
@@ -636,6 +639,7 @@ SP	threads/switch.h	96;"	d
 SPECIAL	machine/mipssim.h	105;"	d
 STACK_FENCEPOST	threads/thread.cc	23;"	d	file:
 STATS_H	machine/stats.h	12;"	d
+SUSPENDING	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED, SUSPENDING};$/;"	e	enum:ThreadStatus
 SWITCH	filesys/swtch.s	/^SWITCH:$/;"	l
 SWITCH	network/swtch.s	/^SWITCH:$/;"	l
 SWITCH	threads/switch-old.s	/^SWITCH:$/;"	l
@@ -665,13 +669,15 @@ Semaphore	threads/synch.cc	/^Semaphore::Semaphore(char* debugName, int initialVa
 Semaphore	threads/synch.h	/^class Semaphore {$/;"	c
 Send	machine/network.cc	/^Network::Send(PacketHeader hdr, char* data)$/;"	f	class:Network
 Send	network/post.cc	/^PostOffice::Send(PacketHeader pktHdr, MailHeader mailHdr, char* data)$/;"	f	class:PostOffice
+Send	threads/thread.cc	/^Thread::Send(char * send_data)$/;"	f	class:Thread
 SendDone	machine/network.cc	/^Network::SendDone()$/;"	f	class:Network
+SendRecvTest	threads/threadtest.cc	/^void SendRecvTest()$/;"	f
 SendToSocket	machine/sysdep.cc	/^SendToSocket(int sockID, char *buffer, int packetSize, char *toName)$/;"	f
 SetLevel	machine/interrupt.cc	/^Interrupt::SetLevel(IntStatus now)$/;"	f	class:Interrupt
 ShortToHost	bin/coff2noff.c	/^ShortToHost(unsigned short shortword) {$/;"	f
 ShortToHost	machine/translate.cc	/^ShortToHost(unsigned short shortword) {$/;"	f
 ShortToMachine	machine/translate.cc	/^ShortToMachine(unsigned short shortword) { return ShortToHost(shortword); }$/;"	f
-Signal	threads/synch.cc	/^void Condition::Signal(Lock* conditionLock) { }$/;"	f	class:Condition
+Signal	threads/synch.cc	/^void Condition::Signal(Lock* conditionLock) { $/;"	f	class:Condition
 SimpleThread	threads/threadtest.cc	/^SimpleThread(int which)$/;"	f
 Sleep	threads/thread.cc	/^Thread::Sleep ()$/;"	f	class:Thread
 SortedInsert	threads/list.cc	/^List::SortedInsert(void *item, int sortKey)$/;"	f	class:List
@@ -701,6 +707,7 @@ SynchList	threads/synchlist.h	/^class SynchList {$/;"	c
 SyscallException	machine/machine.h	/^		     SyscallException,      \/\/ A program executed a system call.$/;"	e	enum:ExceptionType
 SystemMode	machine/interrupt.h	/^enum MachineStatus {IdleMode, SystemMode, UserMode};$/;"	e	enum:MachineStatus
 SystemTick	machine/stats.h	53;"	d
+THREADTEST_H	threads/threadtest.h	2;"	d
 THREAD_H	threads/thread.h	38;"	d
 TIMER_H	machine/timer.h	21;"	d
 TLBSize	machine/machine.h	37;"	d
@@ -722,7 +729,7 @@ ThreadRoot	threads/switch.s	/^ThreadRoot:$/;"	l
 ThreadRoot	threads/swtch.s	/^ThreadRoot:$/;"	l
 ThreadRoot	userprog/swtch.s	/^ThreadRoot:$/;"	l
 ThreadRoot	vm/swtch.s	/^ThreadRoot:$/;"	l
-ThreadStatus	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED };$/;"	g
+ThreadStatus	threads/thread.h	/^enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED, SUSPENDING};$/;"	g
 ThreadTest	threads/threadtest.cc	/^ThreadTest()$/;"	f
 ThreadTest1	threads/threadtest.cc	/^ThreadTest1()$/;"	f
 ThreadTestMulti	threads/threadtest.cc	/^ThreadTestMulti(int testnum)$/;"	f
@@ -750,7 +757,7 @@ UserTick	machine/stats.h	52;"	d
 V	threads/synch.cc	/^Semaphore::V()$/;"	f	class:Semaphore
 VoidFunctionPtr	threads/utility.h	/^typedef void (*VoidFunctionPtr)(int arg); $/;"	t
 VoidNoArgFunctionPtr	threads/utility.h	/^typedef void (*VoidNoArgFunctionPtr)(); $/;"	t
-Wait	threads/synch.cc	/^void Condition::Wait(Lock* conditionLock) { ASSERT(FALSE); }$/;"	f	class:Condition
+Wait	threads/synch.cc	/^void Condition::Wait(Lock* conditionLock) {$/;"	f	class:Condition
 WhenDonePC	threads/switch.c	/^	mov	WhenDonePC, %l2$/;"	v
 WhenDonePC	threads/switch.h	118;"	d
 WhenDonePC	threads/switch.h	151;"	d
@@ -850,7 +857,12 @@ cfetch	bin/int.h	22;"	d
 chanceToWork	machine/network.h	/^    double chanceToWork;	\/\/ Likelihood packet will be dropped$/;"	m	class:Network
 code	bin/noff.h	/^   Segment code;		\/* executable code segment *\/ $/;"	m	struct:noffHeader
 column	bin/out.c	/^static column = 1;$/;"	v	file:
+con_nuconsumer	threads/threadtest.h	/^int con_nuconsumer = 0;$/;"	v
+con_number	threads/threadtest.cc	/^int con_number = 0;$/;"	v
 console	userprog/progtest.cc	/^static Console *console;$/;"	v	file:
+consumer	threads/threadtest.cc	/^void consumer(int a)$/;"	f
+consumer_condition	threads/threadtest.cc	/^Condition* consumer_condition = new Condition("conc");$/;"	v
+consumer_lock	threads/threadtest.cc	/^Lock* consumer_lock = new Lock("conl");$/;"	v
 copyright	threads/copyright.h	/^static char *copyright = "Copyright (c) 1992-1993 The Regents of the University of California.  All rights reserved.";$/;"	v
 counter	threads/switch.c	/^	stw  %rp, PC(%arg0)	;save program counter$/;"	v
 cprmask	bin/coff.h	/^        long    cprmask[4];     \/* co-processor register masks          *\/$/;"	m	struct:aouthdr
@@ -860,6 +872,7 @@ currentThread	threads/system.cc	/^Thread *currentThread;			\/\/ the thread we ar
 data	bin/out.c	/^  long data[MAXDATA];$/;"	m	struct:data	file:
 data	bin/out.c	/^struct data {$/;"	s	file:
 data	network/post.h	/^     char data[MaxMailSize];	\/\/ Payload -- message data$/;"	m	class:Mail
+data	threads/system.cc	/^char *data;$/;"	v
 dataSectors	filesys/filehdr.h	/^    int dataSectors[NumDirect];		\/\/ Disk sector numbers for each data $/;"	m	class:FileHeader
 data_start	bin/coff.h	/^        long    data_start;     \/* base of data used for this file      *\/$/;"	m	struct:aouthdr
 datahead	bin/disasm.c	/^static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;$/;"	v	file:
@@ -905,6 +918,7 @@ filehdr	bin/out.c	/^struct filehdr filehdr;$/;"	v	typeref:struct:filehdr
 filename	bin/disasm.c	/^static char filename[1000] = "a.out";	\/* default a.out file *\/$/;"	v	file:
 filename	bin/main.c	/^static char filename[1000] = "a.out";	\/* default a.out file *\/$/;"	v	file:
 fileno	machine/disk.h	/^    int fileno;				\/\/ UNIX file number for simulated disk $/;"	m	class:Disk
+findFreeThreadId	threads/system.cc	/^int findFreeThreadId()$/;"	f
 first	threads/list.h	/^    ListElement *first;  	\/\/ Head of the list, NULL if list is empty$/;"	m	class:List
 fmt	bin/execute.c	/^char fmt[] = "%6d";$/;"	v
 fmt2	bin/execute.c	/^char fmt2[] = "------";$/;"	v
@@ -916,6 +930,7 @@ fp	threads/switch.c	/^	st	%fp, [%i0]$/;"	v
 fp	threads/switch.c	57;"	d	file:
 fp	threads/switch.s	/^#define fp      $30     \/* frame pointer *\/$/;"	d
 freeMapFile	filesys/filesys.h	/^   OpenFile* freeMapFile;		\/\/ Bit map of free disk blocks,$/;"	m	class:FileSystem
+freeThreadId	threads/system.cc	/^void freeThreadId(int thread_id)$/;"	f
 from	machine/network.h	/^    NetworkAddress from;	\/\/ source machine ID$/;"	m	class:PacketHeader
 from	network/post.h	/^    MailBoxAddress from;	\/\/ Mail box to reply to$/;"	m	class:MailHeader
 getLevel	machine/interrupt.h	/^    IntStatus getLevel() {return level;}\/\/ Return whether interrupts$/;"	f	class:Interrupt
@@ -923,6 +938,7 @@ getName	threads/synch.h	/^    char* getName() { return (name); }$/;"	f	class:Con
 getName	threads/synch.h	/^    char* getName() { return name; }	\/\/ debugging assist$/;"	f	class:Lock
 getName	threads/synch.h	/^    char* getName() { return name;}			\/\/ debugging assist$/;"	f	class:Semaphore
 getName	threads/thread.h	/^    char* getName() { return (name); }$/;"	f	class:Thread
+getPriority	threads/thread.h	/^    int getPriority(){$/;"	f	class:Thread
 getStatus	machine/interrupt.h	/^    MachineStatus getStatus() { return status; } \/\/ idle, kernel, user$/;"	f	class:Interrupt
 getThreadId	threads/thread.h	/^    int getThreadId(){$/;"	f	class:Thread
 gp_value	bin/coff.h	/^        long    gp_value;       \/* the gp value used for this object    *\/$/;"	m	struct:aouthdr
@@ -965,6 +981,7 @@ initData	bin/noff.h	/^   Segment initData;		\/* initialized data segment *\/$/;"
 intLevelNames	machine/interrupt.cc	/^static char *intLevelNames[] = { "off", "on"};$/;"	v	file:
 intTypeNames	machine/interrupt.cc	/^static char *intTypeNames[] = { "timer", "disk", "console write", $/;"	v	file:
 interrupt	threads/system.cc	/^Interrupt *interrupt;			\/\/ interrupt status$/;"	v
+isHeldByCurrentThread	threads/synch.cc	/^bool Lock::isHeldByCurrentThread()$/;"	f	class:Lock
 item	threads/list.h	/^     void *item; 	    	\/\/ pointer to item on the list$/;"	m	class:ListElement
 key	threads/list.h	/^     int key;		    	\/\/ priority, for a sorted list$/;"	m	class:ListElement
 l0	threads/switch.c	/^	call	%l0, 1	$/;"	v
@@ -992,7 +1009,9 @@ load_program	bin/disasm.c	/^load_program(filename)$/;"	f
 load_program	bin/main.c	/^load_program(filename)$/;"	f
 load_section	bin/disasm.c	/^load_section(hd)$/;"	f
 lock	filesys/synchdisk.h	/^    Lock *lock;		  		\/\/ Only one read\/write request$/;"	m	class:SynchDisk
+lock	threads/synch.h	/^    Lock* lock;$/;"	m	class:Condition
 lock	threads/synchlist.h	/^    Lock *lock;			\/\/ enforce mutual exclusive access to the list$/;"	m	class:SynchList
+lockUser	threads/synch.h	/^    Thread* lockUser;$/;"	m	class:Lock
 longdis	bin/d.c	/^int longdis = 1;$/;"	v
 m_alloc	bin/disasm.c	/^int *m_alloc(n)$/;"	f
 m_alloc	bin/main.c	/^int *m_alloc(n)$/;"	f
@@ -1013,6 +1032,7 @@ main	threads/main.cc	/^int main(int argc, char **argv)$/;"	f
 mainMemory	machine/machine.h	/^    char *mainMemory;		\/\/ physical memory to store user program,$/;"	m	class:Machine
 map	userprog/bitmap.h	/^    unsigned int *map;			\/\/ bit storage$/;"	m	class:BitMap
 max	threads/utility.h	36;"	d
+max_priority	threads/thread.h	/^    const static int max_priority = 16;$/;"	m	class:Thread
 mem	bin/disasm.c	/^char mem[MEMSIZE];		\/* main memory. use malloc later *\/$/;"	v
 mem	bin/main.c	/^char mem[MEMSIZE];		\/* main memory. use malloc later *\/$/;"	v
 memoffset	bin/int.h	12;"	d
@@ -1020,6 +1040,8 @@ messageAvailable	network/post.h	/^    Semaphore *messageAvailable;\/\/ V'ed when
 messageSent	network/post.h	/^    Semaphore *messageSent;	\/\/ V'ed when next message can be sent to network$/;"	m	class:PostOffice
 messages	network/post.h	/^    SynchList *messages;	\/\/ A mailbox is just a list of arrived messages$/;"	m	class:MailBox
 min	threads/utility.h	35;"	d
+min_priority	threads/thread.h	/^    const static int min_priority = 0;$/;"	m	class:Thread
+mutex	threads/threadtest.cc	/^Lock* mutex = new Lock("mutex");$/;"	v
 myprintf	bin/out.c	/^myprintf(va_alist)$/;"	f
 mysetfile	bin/out.c	/^mysetfile(f)$/;"	f
 mytab	bin/out.c	/^mytab(n)$/;"	f
@@ -1027,7 +1049,7 @@ name	filesys/directory.h	/^    char name[FileNameMaxLen + 1];	\/\/ Text name for
 name	threads/synch.h	/^    char* name;				\/\/ for debugging$/;"	m	class:Lock
 name	threads/synch.h	/^    char* name;        \/\/ useful for debugging$/;"	m	class:Semaphore
 name	threads/synch.h	/^    char* name;$/;"	m	class:Condition
-name	threads/thread.h	/^    char* name;$/;"	m	class:Thread
+name	threads/thread.h	/^    char* name; 			\/\/线程信息$/;"	m	class:Thread
 netAddr	network/post.h	/^    NetworkAddress netAddr;	\/\/ Network address of this machine$/;"	m	class:PostOffice
 network	network/post.h	/^    Network *network;		\/\/ Physical network connection$/;"	m	class:PostOffice
 next	threads/list.h	/^     ListElement *next;		\/\/ next element on list, $/;"	m	class:ListElement
@@ -1076,8 +1098,13 @@ print_section	bin/out.c	/^print_section(i)$/;"	f
 printf	bin/out.c	190;"	d	file:
 printhist	bin/execute.c	/^printhist()$/;"	f
 printstatistics	bin/execute.c	/^printstatistics()$/;"	f
+priority	threads/thread.h	/^    int priority;$/;"	m	class:Thread
+producer	threads/threadtest.cc	/^void producer(int a)$/;"	f
+producer_condition	threads/threadtest.cc	/^Condition* producer_condition = new Condition("proc");$/;"	v
+producer_lock	threads/threadtest.cc	/^Lock* producer_lock = new Lock("prol");$/;"	v
 putBusy	machine/console.h	/^    bool putBusy;    			\/\/ Is a PutChar operation in progress?$/;"	m	class:Console
 queue	threads/synch.h	/^    List *queue;       \/\/ threads waiting in P() for the value to be > 0$/;"	m	class:Semaphore
+queue	threads/synch.h	/^    List* queue;$/;"	m	class:Condition
 r10	threads/switch.c	/^	stw  %r10, S7(%arg0)$/;"	v
 r11	threads/switch.c	/^	stw  %r11, S8(%arg0)$/;"	v
 r12	threads/switch.c	/^	stw  %r12, S9(%arg0)$/;"	v
@@ -1108,6 +1135,7 @@ readHandler	machine/network.h	/^    VoidFunctionPtr readHandler;  \/\/ Interrupt
 readOnly	machine/translate.h	/^    bool readOnly;	\/\/ If this bit is set, the user program is not allowed$/;"	m	class:TranslationEntry
 read_struct	bin/out.c	29;"	d	file:
 readyList	threads/scheduler.h	/^    List *readyList;  		\/\/ queue of threads that are ready to run,$/;"	m	class:Scheduler
+recver	threads/threadtest.cc	/^void recver(int a)$/;"	f
 registers	machine/machine.h	/^    int registers[NumTotalRegs]; \/\/ CPU registers, for executing user programs$/;"	m	class:Machine
 regstrings	bin/d.c	/^char *regstrings[] =$/;"	v
 reloc	bin/out.c	/^  struct reloc reloc[MAXRELOCS];$/;"	m	struct:data	typeref:struct:data::reloc	file:
@@ -1162,9 +1190,12 @@ seekPosition	filesys/openfile.h	/^    int seekPosition;			\/\/ Current position 
 segment	bin/noff.h	/^typedef struct segment {$/;"	s
 self	bin/disasm.c	/^static char self[256];			\/* name of invoking program *\/$/;"	v	file:
 self	bin/main.c	/^static char self[256];			\/* name of invoking program *\/$/;"	v	file:
+sem	threads/synch.h	/^    Semaphore* sem;  $/;"	m	class:Lock
 semaphore	filesys/synchdisk.h	/^    Semaphore *semaphore; 		\/\/ To synchronize requesting thread $/;"	m	class:SynchDisk
 sendBusy	machine/network.h	/^    bool sendBusy;		\/\/ Packet is being sent.$/;"	m	class:Network
 sendLock	network/post.h	/^    Lock *sendLock;		\/\/ Only one outgoing message at a time$/;"	m	class:PostOffice
+sender	threads/threadtest.cc	/^void sender(int a)$/;"	f
+setPriority	threads/thread.cc	/^Thread::setPriority(int priority)$/;"	f	class:Thread
 setStatus	machine/interrupt.h	/^    void setStatus(MachineStatus st) { status = st; }$/;"	f	class:Interrupt
 setStatus	threads/thread.h	/^    void setStatus(ThreadStatus st) { status = st; }$/;"	f	class:Thread
 sfetch	bin/int.h	20;"	d
@@ -1250,13 +1281,13 @@ z	threads/switch.c	45;"	d	file:
 z	threads/switch.s	/^#define z       $0      \/* zero register *\/$/;"	d
 ~AddrSpace	userprog/addrspace.cc	/^AddrSpace::~AddrSpace()$/;"	f	class:AddrSpace
 ~BitMap	userprog/bitmap.cc	/^BitMap::~BitMap()$/;"	f	class:BitMap
-~Condition	threads/synch.cc	/^Condition::~Condition() { }$/;"	f	class:Condition
+~Condition	threads/synch.cc	/^Condition::~Condition() { $/;"	f	class:Condition
 ~Console	machine/console.cc	/^Console::~Console()$/;"	f	class:Console
 ~Directory	filesys/directory.cc	/^Directory::~Directory()$/;"	f	class:Directory
 ~Disk	machine/disk.cc	/^Disk::~Disk()$/;"	f	class:Disk
 ~Interrupt	machine/interrupt.cc	/^Interrupt::~Interrupt()$/;"	f	class:Interrupt
 ~List	threads/list.cc	/^List::~List()$/;"	f	class:List
-~Lock	threads/synch.cc	/^Lock::~Lock() {}$/;"	f	class:Lock
+~Lock	threads/synch.cc	/^Lock::~Lock() {$/;"	f	class:Lock
 ~Machine	machine/machine.cc	/^Machine::~Machine()$/;"	f	class:Machine
 ~MailBox	network/post.cc	/^MailBox::~MailBox()$/;"	f	class:MailBox
 ~Network	machine/network.cc	/^Network::~Network()$/;"	f	class:Network

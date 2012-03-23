@@ -20,6 +20,7 @@ Timer *timer;				// the hardware timer device,
 					// for invoking context switches
 
 bool thread_id_is_used[MAX_THREAD];
+char *data[MAX_THREAD];
 
 #ifdef FILESYS_NEEDED
 FileSystem  *fileSystem;

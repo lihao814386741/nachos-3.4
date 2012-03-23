@@ -41,7 +41,9 @@ Thread::Thread(char* threadName)
 #ifdef USER_PROGRAM
     space = NULL;
 #endif
-    thread_id = 0;
+    thread_id = 0;//added by phoenix
+    priority = 5;
+
 
     DEBUG('t', "Create thread name = %s, id = %d\n", name, thread_id);
     ASSERT(thread_id != -1);
@@ -65,7 +67,7 @@ Thread::~Thread()
     DEBUG('t', "Deleting thread \"%s\"\n", name);
 
     ASSERT(this != currentThread);
-    freeThreadId(this -> thread_id);
+    freeThreadId(this -> thread_id); //added by phoenix
     if (stack != NULL)
 	DeallocBoundedArray((char *) stack, StackSize * sizeof(int));
 }
@@ -98,7 +100,7 @@ Thread::Fork(VoidFunctionPtr func, int arg)
 
  //   this -> thread_id = find_free_thread_id();
  //    
-    this -> thread_id =  findFreeThreadId();
+    this -> thread_id =  findFreeThreadId();//added by phoenix
     DEBUG('t', "Forking thread \"%s\" with func = 0x%x, arg = %d, id = %d\n",
 	  name, (int) func, arg, thread_id);
     ASSERT(this -> thread_id != -1);
@@ -158,7 +160,7 @@ Thread::Finish ()
     
     DEBUG('t', "Finishing thread \"%s\"\tthread_id:%d\n", getName(), this -> thread_id);
 
-    freeThreadId(this -> thread_id);
+    freeThreadId(this -> thread_id); //added by phoenix
 
     
     threadToBeDestroyed = currentThread;
@@ -195,10 +197,21 @@ Thread::Yield ()
     DEBUG('t', "Yielding thread \"%s\"\n", getName());
     
     nextThread = scheduler->FindNextToRun();
+
     if (nextThread != NULL) {
-	scheduler->ReadyToRun(this);
-	scheduler->Run(nextThread);
+	    DEBUG('t', "current -> getPriority %d \t nextThread getPriority %d\n", currentThread -> getPriority(),  nextThread -> getPriority());
+	    scheduler -> Print();
+	    if (currentThread -> getPriority() >= nextThread -> getPriority())
+	    {
+		scheduler->ReadyToRun(this);
+		scheduler->Run(nextThread);
+	    }
+	    else 
+	    {
+	    	scheduler -> ReadyToRun(nextThread);
+	    }
     }
+
     (void) interrupt->SetLevel(oldLevel);
 }
 
@@ -330,4 +343,38 @@ Thread::RestoreUserState()
     for (int i = 0; i < NumTotalRegs; i++)
 	machine->WriteRegister(i, userRegisters[i]);
 }
+
+
 #endif
+void
+Thread::setPriority(int priority)
+{
+	if (priority > this -> max_priority)
+	{
+		this -> priority = this -> max_priority;
+	}
+	else if (priority < this -> min_priority)
+	{
+		this -> priority = this -> min_priority;
+	}
+	else 
+	{
+		this -> priority = priority;
+	}
+
+}
+void 
+Thread::Send(char * send_data)
+{
+	printf("getThreadId() = %d\n", currentThread -> getThreadId());
+	data[currentThread -> getThreadId()] = send_data;
+}
+
+char * 
+Thread::Receive(int thread_id)
+{
+	if (thread_id <= MAX_THREAD && thread_id >= 0)
+		return  data[thread_id];
+	else 
+		return NULL;
+}

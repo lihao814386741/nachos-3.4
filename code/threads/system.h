@@ -32,6 +32,7 @@ extern Statistics *stats;			// performance metrics
 extern Timer *timer;				// the hardware alarm clock
 
 extern bool thread_id_is_used[MAX_THREAD];
+extern char *data[MAX_THREAD];
 extern void freeThreadId(int thread_id);
 extern int findFreeThreadId();
 #ifdef USER_PROGRAM
