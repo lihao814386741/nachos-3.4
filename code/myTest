@@ -1,0 +1,13 @@
+#!/bin/sh
+
+make
+
+./filesys/nachos -f
+#./filesys/nachos -cp ~/Program/perl/test haha
+#./filesys/nachos -l
+./filesys/nachos -D
+#gdb ./filesys/nachos
+
+echo "the Test is over."
+
+

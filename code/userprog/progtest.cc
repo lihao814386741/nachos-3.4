@@ -13,6 +13,7 @@
 #include "console.h"
 #include "addrspace.h"
 #include "synch.h"
+#include "synchConsole.h"
 
 //----------------------------------------------------------------------
 // StartProcess
@@ -81,4 +82,22 @@ ConsoleTest (char *in, char *out)
 	writeDone->P() ;        // wait for write to finish
 	if (ch == 'q') return;  // if q, quit
     }
+}
+void
+SynchConsoleTest(char * in, char * out)
+{
+	char ch;
+
+	printf("\nWELCOME TO LIHAO'S CONSOLE\n");
+	SynchConsole *synchConsole = new SynchConsole();
+
+	while (true)
+	{
+		ch = synchConsole -> GetChar();
+		synchConsole -> PutChar(ch);
+		if (ch == 'q')
+			return ;
+	}
+
+
 }

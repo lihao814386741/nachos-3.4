@@ -19,8 +19,13 @@ Statistics *stats;			// performance metrics
 Timer *timer;				// the hardware timer device,
 					// for invoking context switches
 
-bool thread_id_is_used[MAX_THREAD];
+bool thread_id_is_used[MAX_THREAD + 1];
 char *data[MAX_THREAD];
+
+
+int MailCount;
+std::vector<MailMsg *> ThreadMailBox;
+Semaphore * MailLock;
 
 #ifdef FILESYS_NEEDED
 FileSystem  *fileSystem;
@@ -71,7 +76,7 @@ TimerInterruptHandler(int dummy)
 int findFreeThreadId()
 {
 
-	for (int i = 1; i < MAX_THREAD; ++ i)
+	for (int i = 1; i <= MAX_THREAD; ++ i)
 	{
 		if (!thread_id_is_used[i])
 		{
@@ -176,7 +181,8 @@ Initialize(int argc, char **argv)
     for (int i = 0; i < MAX_THREAD; ++ i)
 	thread_id_is_used[i] = false;
 
-
+    MailCount = 0;
+    MailLock = new Semaphore("MailLock", 1);
 
 #ifdef USER_PROGRAM
     machine = new Machine(debugUserProg);	// this must come first
@@ -225,4 +231,57 @@ Cleanup()
     
     Exit(0);
 }
+int PostMail(Thread *send, Thread * recv, char * data, int len)
+{
+	if (MailCount  > MAX_MAIL_NUM)
+		return -1;
+	if (len > MAX_MAIL_LENGTH)
+		return -1;
+	MailMsg * m = new MailMsg;
+	m -> sendThread = send;
+	m -> recvThread = recv;
 
+	memset(m -> data, 0, MAX_MAIL_LENGTH);
+	memcpy(m -> data, data, len);
+	MailLock -> P();
+	++ MailCount;
+	ThreadMailBox.push_back(m);
+	MailLock -> V();
+	return 0;
+}
+int GetMail(Thread *send, Thread *recv, char * data)
+{
+	if (MailCount <= 0)
+		return -1;
+	if (send == NULL || recv == NULL)
+		return -1;
+	
+	if (!thread_id_is_used[send -> getThreadId()])
+		return -1;
+	
+	printf("in GetMail\n");
+
+	MailLock -> P();
+
+	for (std::vector<MailMsg*>::iterator it = ThreadMailBox.begin(); it != ThreadMailBox.end(); ++ it)
+	{
+		printf("send:%d\t%d\t\n", (*it) -> sendThread, send);
+		printf("recv:%d\t%d\t\n", (*it) -> recvThread, recv);
+		if ((((*it) -> sendThread) == send) && (((*it) -> recvThread) == recv))
+		{
+			memcpy(data, (*it) -> data, MAX_MAIL_LENGTH);
+			delete(*it);
+			ThreadMailBox.erase(it);
+			MailCount --;
+			MailLock -> V();
+			return 0;
+		
+		}
+	}
+
+	printf("data:\t%s\n", data);
+	MailLock -> V();
+
+
+	return -1;
+}

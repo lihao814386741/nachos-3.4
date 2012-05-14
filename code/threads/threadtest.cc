@@ -224,7 +224,45 @@ void SendRecvTest()
 
 	t1 -> Fork(sender, 0);
 	t2 -> Fork(recver, 0);
+}
+Thread *send_id;
+Thread *recv_id;
+void post(int arg)
+{
+	printf("in post");
 
+	char data[10] = "data";
+	printf("send data is:\t%s\n", data);
+	for (int i = 0;i < 10;  ++ i)
+	{
+		PostMail(currentThread, recv_id, data, 5);
+	}
+	currentThread -> Yield();
+
+}
+void get(int arg)
+{
+	printf("in get\n");
+	char data[100];
+	
+	for (int i = 0; i < 11; ++ i)
+	{
+		GetMail(send_id, currentThread, data);
+		printf("receive data is: \t%s\n", data);
+	}
+}
+
+
+
+
+
+void SendRecvMailTest()
+{
+	send_id = new Thread("post");
+	recv_id = new Thread("get");;
+
+	send_id -> Fork(post, 0);
+	recv_id -> Fork(get, 0);
 }
 
 
@@ -232,4 +270,63 @@ void SendRecvTest()
 
 
 
+Semaphore *b;
 
+
+void barrier(int arg)
+{
+	printf("waiting 3 thread\n");
+	b -> P();
+	printf("all thread is arriving\n");
+}
+void Thread1(int arg)
+{
+	printf("Thread 1 and please pess y\n");
+	char c;
+	scanf("%s", &c);
+	if (c == 'y')
+	{
+	 	b-> V();
+	}
+
+}
+
+void Thread2(int arg)
+{
+	printf("Thread 2 and please pess y\n");
+	char c;
+	scanf("%s", &c);
+	if (c == 'y')
+	{
+	 	b-> V();
+	}
+
+}
+void Thread3(int arg)
+{
+	printf("Thread 3 and please pess y\n");
+	char c;
+	scanf("%s", &c);
+	if (c == 'y')
+	{
+	 	b-> V();
+	}
+
+}
+void BarrierTest()
+{
+	b = new Semaphore("Barrier", -2);
+
+	Thread *t1 = new Thread("forked thread1");
+	Thread *t2 = new Thread("forked thread2");
+	Thread *t3 = new Thread("forked thread3");
+	Thread *t4 = new Thread("forked thread4");
+
+	t1 -> Fork(barrier, 0);
+	t2 -> Fork(Thread1, 0);
+	t3 -> Fork(Thread2, 0);
+	t4 -> Fork(Thread3, 0);
+	
+
+
+}

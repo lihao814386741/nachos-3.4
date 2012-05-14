@@ -50,6 +50,7 @@
 #include "directory.h"
 #include "filehdr.h"
 #include "filesys.h"
+#include "../threads/synch.h"
 
 // Sectors containing the file headers for the bitmap of free sectors,
 // and the directory of files.  These file headers are placed in well-known 
@@ -80,6 +81,7 @@
 FileSystem::FileSystem(bool format)
 { 
     DEBUG('f', "Initializing the file system.\n");
+    sysLock = new Lock("sysLock");
     if (format) {
         BitMap *freeMap = new BitMap(NumSectors);
         Directory *directory = new Directory(NumDirEntries);
@@ -127,7 +129,7 @@ FileSystem::FileSystem(bool format)
 
 	if (DebugIsEnabled('f')) {
 	    freeMap->Print();
-	    directory->Print();
+	    directory->Print(0);
 
         delete freeMap; 
 	delete directory; 
@@ -174,6 +176,7 @@ FileSystem::FileSystem(bool format)
 bool
 FileSystem::Create(char *name, int initialSize)
 {
+	sysLock -> Acquire();
     Directory *directory;
     BitMap *freeMap;
     FileHeader *hdr;
@@ -211,6 +214,7 @@ FileSystem::Create(char *name, int initialSize)
         delete freeMap;
     }
     delete directory;
+    sysLock -> Release();
     return success;
 }
 
@@ -284,6 +288,10 @@ FileSystem::Remove(char *name)
     delete fileHdr;
     delete directory;
     delete freeMap;
+    //EDIT BY LIHAO
+    printf("Delete File %s Success\n", name);
+
+    //END
     return TRUE;
 } 
 
@@ -298,7 +306,7 @@ FileSystem::List()
     Directory *directory = new Directory(NumDirEntries);
 
     directory->FetchFrom(directoryFile);
-    directory->List();
+    directory->List(0);
     delete directory;
 }
 
@@ -332,10 +340,56 @@ FileSystem::Print()
     freeMap->Print();
 
     directory->FetchFrom(directoryFile);
-    directory->Print();
+    directory->Print(0);
 
     delete bitHdr;
     delete dirHdr;
     delete freeMap;
     delete directory;
 } 
+
+//EDIT BY LIHAO
+bool
+FileSystem::MakeDir(char * name)
+{
+	sysLock -> Acquire();
+	Directory *directory;
+	BitMap *freeMap;
+	bool success;
+
+	directory = new Directory(0);
+	directory -> FetchFrom(directoryFile);
+
+	freeMap = new BitMap(NumSectors);
+	freeMap -> FetchFrom(freeMapFile);
+
+	if (!directory -> AddDir(name))
+		success = FALSE;
+	else 
+		success = TRUE;
+
+	DEBUG('f', "Creating Folder %s\n", name);
+
+	directory -> WriteBack(directoryFile);
+	freeMap -> WriteBack(freeMapFile);
+	
+	delete freeMap;
+	delete directory;
+
+	sysLock -> Release();
+
+	return success;
+
+
+
+
+
+
+}
+
+bool
+FileSystem::Close(OpenFile * file)
+{
+	delete file;
+}
+//END

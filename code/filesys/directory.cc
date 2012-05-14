@@ -37,10 +37,6 @@
 
 Directory::Directory(int size)
 {
-    table = new DirectoryEntry[size];
-    tableSize = size;
-    for (int i = 0; i < tableSize; i++)
-	table[i].inUse = FALSE;
 }
 
 //----------------------------------------------------------------------
@@ -50,7 +46,6 @@ Directory::Directory(int size)
 
 Directory::~Directory()
 { 
-    delete [] table;
 } 
 
 //----------------------------------------------------------------------
@@ -61,9 +56,34 @@ Directory::~Directory()
 //----------------------------------------------------------------------
 
 void
-Directory::FetchFrom(OpenFile *file)
+Directory::FetchFrom(OpenFile *file, bool zero)
 {
-    (void) file->ReadAt((char *)table, tableSize * sizeof(DirectoryEntry), 0);
+   // (void) file->ReadAt((char *)table, tableSize * sizeof(DirectoryEntry), 0);
+	//EDIT BY LIHAO
+	if(zero == true )
+		file->Seek(0);
+	file->Read(DirName,FileNameMaxLen + 1);
+	file->Read(FullPath,FULL_PATH_LENGTH + 1);
+	FileList.clear();
+	int fileNum;
+	DirectoryEntry* de;
+	file->ReadInt( &fileNum );
+	for( int i = 0; i < fileNum; i++ ){
+		de = new DirectoryEntry();
+		file->Read((char*)de, sizeof(DirectoryEntry) );
+		FileList.push_back(de);
+	}
+	int DirNum;
+	Directory* dy;
+	FolderList.clear();
+	file->ReadInt( &DirNum );
+	for( int i = 0; i < DirNum; i++ ){
+		dy = new Directory(0);
+		dy->ParentDir = this;
+		dy->FetchFrom(file,false);
+		FolderList.push_back(dy);
+	}
+	//END
 }
 
 //----------------------------------------------------------------------
@@ -74,9 +94,26 @@ Directory::FetchFrom(OpenFile *file)
 //----------------------------------------------------------------------
 
 void
-Directory::WriteBack(OpenFile *file)
+Directory::WriteBack(OpenFile *file, bool zero)
 {
-    (void) file->WriteAt((char *)table, tableSize * sizeof(DirectoryEntry), 0);
+   // (void) file->WriteAt((char *)table, tableSize * sizeof(DirectoryEntry), 0);
+	//EDIT BY LIHAO
+	if( zero ==true )
+		file->Seek(0);
+	int temp;
+	file->Write(DirName,FileNameMaxLen + 1);
+	file->Write(FullPath,FULL_PATH_LENGTH + 1);
+	temp =FileList.size();
+	file->WriteInt( &temp );
+	for(vector<DirectoryEntry*>::iterator it = FileList.begin(); it != FileList.end(); it++ ){
+		file->Write((char*)(*it), sizeof(DirectoryEntry) );	
+	}
+	temp =FolderList.size();
+	file->WriteInt( &temp );
+	for(vector<Directory*>::iterator it = FolderList.begin(); it != FolderList.end(); it++ ){
+		(*it)->WriteBack(file,false);
+	}
+	//END
 }
 
 //----------------------------------------------------------------------
@@ -90,6 +127,54 @@ Directory::WriteBack(OpenFile *file)
 int
 Directory::FindIndex(char *name)
 {
+	Directory * directory;
+	Directory * directoryEntry;
+	char tempBuf[FULL_PATH_LENGTH + 1];
+	char *fullPath = tempBuf;
+	strncpy(fullPath, name, FULL_PATH_LENGTH + 1);
+	char * nextPath = strstr(fullPath, "/");
+
+	if (nextPath != NULL)
+	{
+		nextPath[0] = 0;
+		nextPath = fullPath;
+		fullPath = fullPath + strlen(fullPath) + 1;
+
+		for (vector<Directory *>::iterator it = FolderList.begin(); it !=FolderList.end(); ++ it)
+		{
+			if (!strncmp((*it) -> DirName, nextPath, FileNameMaxLen))
+			{
+				return (*it) -> FindIndex(fullPath);
+			}
+		}
+		return -1;
+	}
+	else 
+	{
+		char * fileName = strstr(fullPath, ".");
+		char * extName = "";
+
+		if (fileName != NULL)
+		{
+			fileName[0] = 0;
+			fileName = fullPath;
+			extName = fullPath + strlen(fullPath) + 1;
+		}
+		else 
+		{
+			fileName = fullPath;
+		}
+		for (vector<DirectoryEntry *>::iterator it = FileList.begin(); it != FileList.end(); ++ it)
+		{
+			if (!strncmp((*it) -> name, fileName, FileNameMaxLen) && !strncmp((*it) -> ExtName, extName, FileNameMaxLen))
+			{
+				return (*it) -> sector;
+			}
+		}
+	}
+
+
+	return -1;
     for (int i = 0; i < tableSize; i++)
         if (table[i].inUse && !strncmp(table[i].name, name, FileNameMaxLen))
 	    return i;
@@ -111,7 +196,7 @@ Directory::Find(char *name)
     int i = FindIndex(name);
 
     if (i != -1)
-	return table[i].sector;
+	return i;
     return -1;
 }
 
@@ -129,17 +214,80 @@ Directory::Find(char *name)
 bool
 Directory::Add(char *name, int newSector)
 { 
-    if (FindIndex(name) != -1)
-	return FALSE;
+  //  if (FindIndex(name) != -1)
+  //      return FALSE;
 
-    for (int i = 0; i < tableSize; i++)
-        if (!table[i].inUse) {
-            table[i].inUse = TRUE;
-            strncpy(table[i].name, name, FileNameMaxLen); 
-            table[i].sector = newSector;
-        return TRUE;
+  //  for (int i = 0; i < tableSize; i++)
+  //      if (!table[i].inUse) {
+  //          table[i].inUse = TRUE;
+  //          strncpy(table[i].name, name, FileNameMaxLen); 
+  //          table[i].sector = newSector;
+  //      return TRUE;
+  //      }
+  //  return FALSE;	// no space.  Fix when we have extensible files.
+	//EDIT BY LIHAO
+	char tempBuf[FULL_PATH_LENGTH + 1];
+	char* fullPath = tempBuf;
+	strncpy(fullPath,name,FULL_PATH_LENGTH + 1);
+	Directory* dy = this;
+	DirectoryEntry* de;
+	vector<Directory*>::iterator itd;
+	vector<DirectoryEntry*>::iterator ite;
+	char* nextPath = fullPath;
+	while( fullPath[0] != '\0' ){
+		DEBUG('v', "Add file: %s, fullPath:%s\n", nextPath, fullPath);
+		nextPath = strstr(fullPath,"/");
+		if( nextPath != NULL ){
+			nextPath[0] = 0;
+			nextPath = fullPath;
+			fullPath = fullPath + strlen(fullPath) + 1;
+
+			for( itd = dy->FolderList.begin(); itd != dy->FolderList.end(); itd++ ){
+				if( !strncmp((*itd)->DirName, nextPath, FileNameMaxLen) ){
+					break;
+				}
+			}
+			if( itd == dy->FolderList.end() )
+				return false;
+			else
+				dy = (*itd);
+		}
+		else{
+			char* fileName = strstr(fullPath,".");
+			char* extName = "";
+			if( fileName != NULL ){
+				fileName[0] = '\0';
+				fileName = fullPath;
+				extName = fileName + strlen(fileName) + 1;
+			}
+			else fileName = fullPath;
+			for( ite = dy->FileList.begin(); ite != dy->FileList.end(); ite++ ){
+				if( !strncmp((*ite)->name, fileName, FileNameMaxLen) && !strncmp((*ite)->ExtName,extName,FileExtNameMaxLen) )
+					return false;
+			}
+			
+			de = new DirectoryEntry;
+			de->inUse = true;
+			de->sector = newSector;
+			strncpy( de->name,fileName,FileNameMaxLen );
+			strncpy( de->ExtName, extName,FileExtNameMaxLen );
+			strncpy(tempBuf,name,FULL_PATH_LENGTH + 1);
+			fullPath = tempBuf;
+			nextPath = strrchr(fullPath,(int)'/');
+			if(nextPath != NULL)
+				nextPath[0] ='\0';
+			else fullPath = "";
+			strncpy(de->FullPath,fullPath,FULL_PATH_LENGTH + 1 );
+			ASSERT(dy != NULL);
+			DEBUG('v', "Add file: fullPath:%s, fileName:%s, extName:%s\n", de->FullPath, de->name,de->ExtName);
+			dy->FileList.push_back(de);
+
+			return true;
+		}
 	}
-    return FALSE;	// no space.  Fix when we have extensible files.
+	return false;
+
+	//END
 }
 
 //----------------------------------------------------------------------
@@ -153,12 +301,72 @@ Directory::Add(char *name, int newSector)
 bool
 Directory::Remove(char *name)
 { 
-    int i = FindIndex(name);
+ //   int i = FindIndex(name);
 
-    if (i == -1)
-	return FALSE; 		// name not in directory
-    table[i].inUse = FALSE;
-    return TRUE;	
+//    if (i == -1)
+//	return FALSE; 		// name not in directory
+  //  table[i].inUse = FALSE;
+   // return TRUE;	
+//EDIT BY LIHAO
+	char tempBuf[FULL_PATH_LENGTH + 1];
+	char* fullPath = tempBuf;
+	strncpy(fullPath,name,FULL_PATH_LENGTH + 1);
+	Directory* dy = this;
+	DirectoryEntry* de;
+	char* nextPath;
+	while( fullPath[0] != 0 ){
+		nextPath = strstr(fullPath,"/");
+		if( nextPath != NULL ){
+			nextPath[0] = 0;
+			nextPath = fullPath;
+			fullPath = fullPath + strlen(fullPath) + 1;
+			vector<Directory*>::iterator itd;
+			for( itd = dy->FolderList.begin(); itd != dy->FolderList.end(); itd++ ){
+				if( !strncmp((*itd)->DirName, nextPath, FileNameMaxLen) ){
+					break;
+				}
+			}
+			if( itd == dy->FolderList.end() )
+				return false;
+			else{
+				if( fullPath[0] == 0 ){				//Delete folder
+					if( (*itd)->FolderList.empty() && (*itd)->FileList.empty() ){
+						dy->FolderList.erase( itd );
+						delete (*itd);
+						return true;
+					}
+					else{
+						printf("Dir Not Empty\n");
+						return false;
+					}
+				}
+				else
+					dy = (*itd);
+			}
+		}
+		else{
+			char* fileName = strstr(fullPath,".");
+			char* extName = "";
+			if( fileName != NULL ){
+				fileName[0] = '\0';
+				fileName = fullPath;
+				extName = name + strlen(fileName) + 1;
+				
+			}
+			else fileName = fullPath;
+			DEBUG('v', "Remove file: fullPath:%s + %s, fileName:%s, extName:%s\n", dy->FullPath,dy->DirName, fileName,extName);
+			for(vector<DirectoryEntry*>::iterator it = dy->FileList.begin(); it != dy->FileList.end(); it++ ){
+				if( !strncmp((*it)->name, fileName, FileNameMaxLen) && !strncmp((*it)->ExtName,extName,FileExtNameMaxLen) ){
+					dy->FileList.erase(it);
+					delete (*it);
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	return false;
+//END
 }
 
 //----------------------------------------------------------------------
@@ -167,11 +375,30 @@ Directory::Remove(char *name)
 //----------------------------------------------------------------------
 
 void
-Directory::List()
+Directory::List(int level)
 {
-   for (int i = 0; i < tableSize; i++)
-	if (table[i].inUse)
-	    printf("%s\n", table[i].name);
+ //  for (int i = 0; i < tableSize; i++)
+//	if (table[i].inUse)
+//	    printf("%s\n", table[i].name);
+	//EDIT BY LIHAO
+	if(level == 0)
+		printf("[Root]\n");
+	for(vector<DirectoryEntry*>::iterator it = FileList.begin(); it != FileList.end(); it++ ){
+		for( int i =0; i <= level; i++ )
+			printf("-");
+		printf("%s", (*it)->name);
+		if((*it)->ExtName[0] != 0 )
+			printf(".%s", (*it)->ExtName);
+		printf("\n");
+	}
+	for(vector<Directory*>::iterator it = FolderList.begin(); it != FolderList.end(); it++ ){
+		for( int i =0; i <= level; i++ )
+			printf("-");
+		printf("[%s]\n", (*it)->DirName);
+		(*it)->List(level + 1);
+	}
+	return;
+	//END
 }
 
 //----------------------------------------------------------------------
@@ -181,17 +408,116 @@ Directory::List()
 //----------------------------------------------------------------------
 
 void
-Directory::Print()
+Directory::Print(int level)
 { 
+  //  FileHeader *hdr = new FileHeader;
+
+    //printf("Directory contents:\n");
+//    for (int i = 0; i < tableSize; i++)
+//	if (table[i].inUse) {
+//	    printf("Name: %s, Sector: %d\n", table[i].name, table[i].sector);
+//	    hdr->FetchFrom(table[i].sector);
+//	    hdr->Print();
+//	}
+  //  printf("\n");
+   // delete hdr;
+//EDIT BY LIHAO
     FileHeader *hdr = new FileHeader;
 
     printf("Directory contents:\n");
-    for (int i = 0; i < tableSize; i++)
-	if (table[i].inUse) {
-	    printf("Name: %s, Sector: %d\n", table[i].name, table[i].sector);
-	    hdr->FetchFrom(table[i].sector);
+    	if(level == 0)
+		printf("[Root]\n");
+	for(vector<DirectoryEntry*>::iterator it = FileList.begin(); it != FileList.end(); it++ ){
+		for( int i =0; i <= level; i++ )
+			printf("-");
+		printf("%s", (*it)->name);
+		if((*it)->ExtName[0] != 0 )
+			printf(".%s", (*it)->ExtName);
+		printf(" Sector:%d\n",(*it)->sector);
+	    hdr->FetchFrom((*it)->sector);
 	    hdr->Print();
+
 	}
-    printf("\n");
-    delete hdr;
+	for(vector<Directory*>::iterator it = FolderList.begin(); it != FolderList.end(); it++ ){
+		for( int i =0; i <= level; i++ )
+			printf("-");
+		printf("[%s]\n", (*it)->DirName);
+		(*it)->Print(level + 1);
+	}
+	delete hdr;
+	return;
+
+
+//END
 }
+//EDIT BY LIHAO
+void 
+Directory::ClearAll()
+{
+	for(vector<DirectoryEntry*>::iterator it = FileList.begin(); it != FileList.end(); it++ ){
+		delete (*it);
+	}
+	for(vector<Directory*>::iterator it = FolderList.begin(); it != FolderList.end(); it++ ){
+		(*it)->ClearAll();
+		delete (*it);
+	}
+}
+bool 
+Directory::AddDir(char *name)
+{
+	char tempBuf[FULL_PATH_LENGTH + 1];
+	char* fullPath = tempBuf;
+	strncpy(fullPath,name,FULL_PATH_LENGTH + 1);
+	int len = strlen(fullPath);
+	if( fullPath[len-1] != '/' )
+		return false;
+	Directory* dy = this;
+	vector<Directory*>::iterator itd;
+	char* nextPath = NULL;
+	while( fullPath[0] != '\0' ){
+		nextPath = strstr(fullPath,"/");
+		if( nextPath != NULL ){
+			nextPath[0] = 0;
+			nextPath = fullPath;
+			fullPath = fullPath + strlen(fullPath) + 1;
+
+			for( itd = dy->FolderList.begin(); itd != dy->FolderList.end(); itd++ ){
+				if( !strncmp((*itd)->DirName, nextPath, FileNameMaxLen) ){
+					break;
+				}
+			}
+			if( fullPath[0] == '\0' ){
+				if( itd == dy->FolderList.end() ){
+					
+					Directory* newDir = new Directory(0);
+
+					strncpy(newDir->DirName,nextPath,FileNameMaxLen );
+					strncpy(tempBuf,name,FULL_PATH_LENGTH + 1 );
+					fullPath = tempBuf;
+					nextPath = strrchr(tempBuf,(int)'/');
+					nextPath[0] = 0;
+					nextPath = strrchr(tempBuf,(int)'/');
+					if(nextPath != NULL )
+						nextPath[0] = 0;
+					else fullPath[0] = 0;
+					strncpy(newDir->FullPath,fullPath,FULL_PATH_LENGTH );
+					DEBUG('f', "Creating Folder %s, fullPath %s\n", newDir->DirName,newDir->FullPath);
+					newDir->ParentDir = dy;
+					dy->FolderList.push_back(newDir);
+					return true;
+				}
+				else
+					return false;
+			}
+			else{
+				if( itd == dy->FolderList.end() )
+					return false;
+				else
+					dy = (*itd);
+			}
+		}
+		else return false;
+	}
+	return false;
+}
+//END

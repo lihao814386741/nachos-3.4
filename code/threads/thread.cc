@@ -42,11 +42,11 @@ Thread::Thread(char* threadName)
     space = NULL;
 #endif
     thread_id = 0;//added by phoenix
+    user_id = 0;
     priority = 5;
 
 
     DEBUG('t', "Create thread name = %s, id = %d\n", name, thread_id);
-    ASSERT(thread_id != -1);
 }
 
 

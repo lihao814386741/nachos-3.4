@@ -18,9 +18,15 @@
 #define DIRECTORY_H
 
 #include "openfile.h"
+#include "vector"
+using namespace std;
 
-#define FileNameMaxLen 		9	// for simplicity, we assume 
+//EDIT BY LIHAO
+#define FileNameMaxLen 		31	// for simplicity, we assume 
 					// file names are <= 9 characters long
+#define FileExtNameMaxLen	15
+#define FULL_PATH_LENGTH	79
+//END
 
 // The following class defines a "directory entry", representing a file
 // in the directory.  Each entry gives the name of the file, and where
@@ -36,6 +42,10 @@ class DirectoryEntry {
 					//   FileHeader for this file 
     char name[FileNameMaxLen + 1];	// Text name for file, with +1 for 
 					// the trailing '\0'
+	//EDIT BY LIHAO
+	char ExtName[FileNameMaxLen + 1];
+	char FullPath[FULL_PATH_LENGTH + 1];
+	//END
 };
 
 // The following class defines a UNIX-like "directory".  Each entry in
@@ -54,8 +64,8 @@ class Directory {
 					// with space for "size" files
     ~Directory();			// De-allocate the directory
 
-    void FetchFrom(OpenFile *file);  	// Init directory contents from disk
-    void WriteBack(OpenFile *file);	// Write modifications to 
+    void FetchFrom(OpenFile *file, bool zero=true);  	// Init directory contents from disk
+    void WriteBack(OpenFile *file, bool zero=true);	// Write modifications to 
 					// directory contents back to disk
 
     int Find(char *name);		// Find the sector number of the 
@@ -65,9 +75,9 @@ class Directory {
 
     bool Remove(char *name);		// Remove a file from the directory
 
-    void List();			// Print the names of all the files
+    void List(int level);			// Print the names of all the files
 					//  in the directory
-    void Print();			// Verbose print of the contents
+    void Print(int level);			// Verbose print of the contents
 					//  of the directory -- all the file
 					//  names and their contents.
 
@@ -78,6 +88,16 @@ class Directory {
 
     int FindIndex(char *name);		// Find the index into the directory 
 					//  table corresponding to "name"
+	//EDIT BY LIHAO
+	public:
+		void ClearAll();
+		bool AddDir(char *name);
+		char DirName[FileNameMaxLen + 1];
+		char FullPath[FULL_PATH_LENGTH + 1];
+		Directory * 		 ParentDir;
+		vector<DirectoryEntry *> FileList;
+		vector<Directory *>	 FolderList;
+	//END
 };
 
 #endif // DIRECTORY_H

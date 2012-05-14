@@ -62,9 +62,11 @@ extern int testnum;
 extern void ThreadTest(void), Copy(char *unixFile, char *nachosFile);
 extern void PriorityTest();
 extern void SendRecvTest();
+extern void BarrierTest();
+extern void SendRecvMailTest();
 extern void ForkTest();
 extern void Print(char *file), PerformanceTest(void);
-extern void StartProcess(char *file), ConsoleTest(char *in, char *out);
+extern void StartProcess(char *file), ConsoleTest(char *in, char *out), SynchConsoleTest(char *in, char * out);
 extern void MailTest(int networkID);
 
 //----------------------------------------------------------------------
@@ -85,31 +87,36 @@ int main(int argc, char **argv)
 {
     int argCount;			// the number of arguments 
 					// for a particular command
+    int temp_argc;
+    char **temp_argv;
+    temp_argc = argc;
+    temp_argv = argv;
 
     DEBUG('t', "Entering main");
     (void) Initialize(argc, argv);
+    DEBUG('z', "My Test %d", argc);
 #ifdef THREADS
     testnum = 1;
-    for (argc--, argv++; argc > 0; argc -= argCount, argv += argCount) {
+    for (temp_argc--, temp_argv++; temp_argc > 0; temp_argc -= argCount, temp_argv += argCount) {
       argCount = 1;
-      switch (argv[0][1]) {
+      switch (temp_argv[0][1]) {
       case 'q':
-        testnum = atoi(argv[1]);
+        testnum = atoi(temp_argv[1]);
         argCount++;
         break;
       default:
         break;
       }
     }
-//    PriorityTest();
+//   PriorityTest();
    //ForkTest();
-   // ThreadTest();
-   SendRecvTest();
+    ThreadTest();
+   //SendRecvTest();
+//SendRecvMailTest();
+//BarrierTest();
    
 #endif
 
-    DEBUG('z', "My Test %d", argc);
-  //  printf (copyright);
     for (argc--, argv++; argc > 0; argc -= argCount, argv += argCount) {
 	argCount = 1;
         if (!strcmp(*argv, "-z"))               // print copyright
@@ -121,10 +128,10 @@ int main(int argc, char **argv)
             argCount = 2;
         } else if (!strcmp(*argv, "-c")) {      // test the console
 	    if (argc == 1)
-	        ConsoleTest(NULL, NULL);
+	        SynchConsoleTest(NULL, NULL);
 	    else {
 		ASSERT(argc > 2);
-	        ConsoleTest(*(argv + 1), *(argv + 2));
+	        SynchConsoleTest(*(argv + 1), *(argv + 2));
 	        argCount = 3;
 	    }
 	    interrupt->Halt();		// once we start the console, then 
@@ -141,7 +148,11 @@ int main(int argc, char **argv)
 	    ASSERT(argc > 1);
 	    Print(*(argv + 1));
 	    argCount = 2;
-	} else if (!strcmp(*argv, "-r")) {	// remove Nachos file
+	} else if (!strcmp(*argv, "-mkdir")) {	// remove Nachos file
+	    ASSERT(argc > 1);
+	    fileSystem->MakeDir(*(argv + 1));
+	    argCount = 2;
+	}else if (!strcmp(*argv, "-r")) {	// remove Nachos file
 	    ASSERT(argc > 1);
 	    fileSystem->Remove(*(argv + 1));
 	    argCount = 2;

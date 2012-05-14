@@ -65,6 +65,7 @@ class FileSystem {
 };
 
 #else // FILESYS
+class Lock;
 class FileSystem {
   public:
     FileSystem(bool format);		// Initialize the file system.
@@ -76,7 +77,9 @@ class FileSystem {
 
     bool Create(char *name, int initialSize);  	
 					// Create a file (UNIX creat)
-
+	//EDIT BY LIHAO
+    bool Close(OpenFile * file);
+    	//END
     OpenFile* Open(char *name); 	// Open a file (UNIX open)
 
     bool Remove(char *name);  		// Delete a file (UNIX unlink)
@@ -90,6 +93,14 @@ class FileSystem {
 					// represented as a file
    OpenFile* directoryFile;		// "Root" directory -- list of 
 					// file names, represented as a file
+  //EDIT BY LIHAO
+  Lock * sysLock;
+
+public:
+	bool MakeDir(char *name);
+	bool RemoveDir(char *name);
+	
+  //END
 };
 
 #endif // FILESYS

@@ -121,7 +121,9 @@ FileWrite()
 
     printf("Sequential write of %d byte file, in %d byte chunks\n", 
 	FileSize, ContentSize);
-    if (!fileSystem->Create(FileName, 0)) {
+	//EDIT BY LIHAO
+    if (!fileSystem->Create(FileName, FileSize)) {
+    	//END
       printf("Perf test: can't create %s\n", FileName);
       return;
     }

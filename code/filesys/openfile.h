@@ -89,6 +89,12 @@ class OpenFile {
   private:
     FileHeader *hdr;			// Header for this file 
     int seekPosition;			// Current position within the file
+//EDIT BY LIHAO
+  public:
+    int ReadInt( int* into );
+    int WriteInt(int* from );
+    int hdrSector;
+//END
 };
 
 #endif // FILESYS

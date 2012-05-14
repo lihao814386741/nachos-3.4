@@ -78,7 +78,21 @@ OpenFile::Read(char *into, int numBytes)
    seekPosition += result;
    return result;
 }
+//EDIT BY LIHAO
+int OpenFile::ReadInt(int* into)
+{
+   int result = ReadAt((char*)into, 4, seekPosition);
+   seekPosition += result;
+   return result;
+}
 
+int OpenFile::WriteInt( int* from )
+{
+   int result = WriteAt((char*)from, 4, seekPosition);
+   seekPosition += result;
+   return result;
+}
+//END
 int
 OpenFile::Write(char *into, int numBytes)
 {
@@ -157,6 +171,10 @@ OpenFile::WriteAt(char *from, int numBytes, int position)
 	numBytes = fileLength - position;
     DEBUG('f', "Writing %d bytes at %d, from file of length %d.\n", 	
 			numBytes, position, fileLength);
+	//EDIT BY LIHAO
+	hdr -> SetModifiedTime();
+
+	//END
 
     firstSector = divRoundDown(position, SectorSize);
     lastSector = divRoundDown(position + numBytes - 1, SectorSize);

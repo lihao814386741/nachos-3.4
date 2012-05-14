@@ -24,6 +24,13 @@
 #include "copyright.h"
 #include "system.h"
 #include "syscall.h"
+#include "thread.h"
+#include "system.h"
+#include "filehdr.h"
+#include "filesys.h"
+#include "directory.h"
+#include "synch.h"
+#include "utility.h"
 
 //----------------------------------------------------------------------
 // ExceptionHandler
@@ -47,16 +54,156 @@
 //	"which" is the kind of exception.  The list of possible exceptions 
 //	are in machine.h.
 //----------------------------------------------------------------------
+//EDIT BY LIHAO
+int ReadFromFile(OpenFile * file)
+{
+	int buffer = machine -> ReadRegister(4);
+	int size = machine -> ReadRegister(5);
+	int result = 0;
+	
 
+	if (size > 0 && size <= 128)
+	{
+		char temp[size];
+		result = file -> Read(temp, size);
+		for (int i = 0; i < size; ++ i)
+		{
+			machine -> WriteMem(buffer + i, 1, (int)(temp[i]));
+		}
+		printf("buffer:%s.\n", temp);
+	}
+
+	machine -> WriteRegister(2, result);
+	machine -> WriteRegister(PrevPCReg, machine -> ReadRegister(PCReg));
+	machine -> WriteRegister(PCReg, machine -> ReadRegister(NextPCReg));
+	machine -> WriteRegister(NextPCReg, machine -> ReadRegister(PCReg) + 4);
+
+	return result;
+}
+
+int WriteToFile(OpenFile * file)
+{
+	int buffer = machine -> ReadRegister(4);
+	int size = machine -> ReadRegister(5);
+	int result = 0;
+
+	if (size > 0 && size <= 128)
+	{
+		char temp[128];
+
+		for (int i = 0; i < size; ++ i)
+		{
+			machine -> ReadMem(buffer + i, 1, (int *)(&temp[i]));
+		}
+		result = file -> Write(temp, size);
+	}
+
+	machine -> WriteRegister(2, result);
+	machine -> WriteRegister(PrevPCReg, machine -> ReadRegister(PCReg));
+	machine -> WriteRegister(PCReg, machine -> ReadRegister(NextPCReg));
+	machine -> WriteRegister(NextPCReg, machine -> ReadRegister(PCReg) + 4);
+
+
+	return result;
+
+}
+//END
 void
 ExceptionHandler(ExceptionType which)
 {
     int type = machine->ReadRegister(2);
 
-    if ((which == SyscallException) && (type == SC_Halt)) {
-	DEBUG('a', "Shutdown, initiated by user program.\n");
-   	interrupt->Halt();
-    } else {
+	//EDIT BY LIHAO
+    if ((which == SyscallException)) {
+	    if (type == SC_Halt)
+	    {
+		DEBUG('a', "Shutdown, initiated by user program.\n");
+		interrupt->Halt();
+	    }
+	    else if (type == SC_Create)
+	    {
+	    	char fileName[FULL_PATH_LENGTH + 1] = {0};
+		int bufOffset = machine -> ReadRegister(4);
+
+		for (int i = 0; i < FULL_PATH_LENGTH; ++ i)
+		{
+			if (machine -> ReadMem(bufOffset + i, 1, (int *)(&fileName[i])) == false)
+			{
+				return;
+			}
+			if (fileName[i] == 0)
+				break;
+		}
+		
+		printf("CREATE FILENAME == %s.\n", fileName);
+		int result = (int)fileSystem -> Create(fileName, 128);
+		printf("result == %d.\n", result);
+		DEBUG('a', "[]Create file: %s, result : %d\n", fileName, result);
+
+		machine -> WriteRegister(2, result);
+		machine -> WriteRegister(PrevPCReg, machine -> ReadRegister(PCReg));
+		machine -> WriteRegister(PCReg, machine -> ReadRegister(NextPCReg));
+		machine -> WriteRegister(NextPCReg, machine -> ReadRegister(PCReg) + 4);
+	    }
+	    else if (type == SC_Open)
+	    {
+	    	char fileName[FULL_PATH_LENGTH + 1] = {0};
+		int bufOffset = machine -> ReadRegister(4);
+
+		for (int i = 0; i < FULL_PATH_LENGTH; ++ i)
+		{
+			if (machine -> ReadMem(bufOffset + i, 1, (int *)(&fileName[i])) == false)
+			{
+				return;
+			}
+			if (fileName[i] == 0)
+				break;
+		}
+		
+		printf("OPEN FILENAME == %s.\n", fileName);
+		int result = (int)fileSystem -> Open(fileName);
+		printf("the result is %d.\n", result);
+		
+		machine -> WriteRegister(2, result);
+		machine -> WriteRegister(PrevPCReg, machine -> ReadRegister(PCReg));
+		machine -> WriteRegister(PCReg, machine -> ReadRegister(NextPCReg));
+		machine -> WriteRegister(NextPCReg, machine -> ReadRegister(PCReg) + 4);
+	    }
+	    else if (type == SC_Close)
+	    {
+	    	int closeFile = machine -> ReadRegister(4);
+		if (closeFile != 0)
+		{
+			printf("Close File Pointer: %d.\n", closeFile);
+	//		fileSystem -> Close((OpenFile *)closeFile);
+			delete (OpenFile *)closeFile;
+		}
+	    
+	    
+	    	machine -> WriteRegister(PrevPCReg, machine -> ReadRegister(PCReg));
+		machine -> WriteRegister(PCReg, machine -> ReadRegister(NextPCReg));
+		machine -> WriteRegister(NextPCReg, machine -> ReadRegister(PCReg) + 4);
+	    }
+	    else if (type == SC_Read)
+	    {
+	    	int read = machine -> ReadRegister(6);
+
+		OpenFile *file = (OpenFile *)read;
+		printf("Read FILE POINTER:%d.\n", read);
+		ReadFromFile(file);
+	    }
+	    else if (type == SC_Write)
+	    {
+	    	int writeType = machine -> ReadRegister(6);
+	    
+	    	OpenFile * file = (OpenFile *)writeType;
+		
+	    
+	    }
+	    //END
+    }
+
+    else {
 	printf("Unexpected user mode exception %d %d\n", which, type);
 	ASSERT(FALSE);
     }
