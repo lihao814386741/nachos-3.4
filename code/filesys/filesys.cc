@@ -50,6 +50,7 @@
 #include "directory.h"
 #include "filehdr.h"
 #include "filesys.h"
+#include "system.h"
 #include "../threads/synch.h"
 
 // Sectors containing the file headers for the bitmap of free sectors,
@@ -261,6 +262,7 @@ FileSystem::Open(char *name)
 bool
 FileSystem::Remove(char *name)
 { 
+	sysLock -> Acquire();
     Directory *directory;
     BitMap *freeMap;
     FileHeader *fileHdr;
@@ -273,23 +275,56 @@ FileSystem::Remove(char *name)
        delete directory;
        return FALSE;			 // file not found 
     }
-    fileHdr = new FileHeader;
-    fileHdr->FetchFrom(sector);
 
-    freeMap = new BitMap(NumSectors);
-    freeMap->FetchFrom(freeMapFile);
 
-    fileHdr->Deallocate(freeMap);  		// remove data blocks
-    freeMap->Clear(sector);			// remove header block
-    directory->Remove(name);
+	FileEntry *find;
+	map<int, FileEntry*>::iterator itFind;
+	itFind = fileEntryList.find(sector);
+	if (itFind != fileEntryList.end())
+	{
+		find = (*itFind).second;
+		if (find -> openCount > 0)
+		{
+			sysLock-> Release();
+			printf("File %s in use\n", name);
+		}
+	
 
-    freeMap->WriteBack(freeMapFile);		// flush to disk
-    directory->WriteBack(directoryFile);        // flush to disk
-    delete fileHdr;
-    delete directory;
-    delete freeMap;
-    //EDIT BY LIHAO
-    printf("Delete File %s Success\n", name);
+	}
+	if (directory -> Remove(name))
+	{
+
+		fileHdr = new FileHeader;
+		fileHdr->FetchFrom(sector);
+
+		freeMap = new BitMap(NumSectors);
+		freeMap->FetchFrom(freeMapFile);
+
+		fileHdr->Deallocate(freeMap);  		// remove data blocks
+		freeMap->Clear(sector);			// remove header block
+		directory->Remove(name);
+
+		freeMap->WriteBack(freeMapFile);		// flush to disk
+		directory->WriteBack(directoryFile);        // flush to disk
+		delete fileHdr;
+		//EDIT BY LIHAO
+		printf("Delete File %s Success\n", name);
+	}
+	else 
+	{
+		printf("Delete File %s Error\n", name);
+	}
+
+		delete directory;
+		delete freeMap;
+		sysLock -> Release();
+
+
+
+
+
+
+
 
     //END
     return TRUE;
@@ -392,4 +427,53 @@ FileSystem::Close(OpenFile * file)
 {
 	delete file;
 }
+Lock*
+FileSystem::InsertFileEntry(int sector)
+{
+	FileEntry * findFE;
+	DEBUG('f', "InsertFileEntry Sector:%d\n", sector);
+	map<int, FileEntry *> testList;
+	map<int, FileEntry *>::iterator itFind = fileEntryList.find(sector);
+
+	if (itFind != fileEntryList.end()) //如果这个文件已经被打开了 openCount++ 
+	{
+		findFE = (*itFind).second;
+		findFE -> openCount++; 
+	}
+	else 
+	{
+		findFE = new FileEntry;
+		findFE -> hdrSector = sector;
+		findFE -> openCount = 1;
+		findFE -> fileLock = new Lock("FileLock");
+		fileEntryList.insert(std::pair<int, FileEntry *>(sector, findFE));
+	
+	}
+
+	return findFE -> fileLock;
+}
+bool
+FileSystem::RemoveFileEntry(int sector)
+{
+	FileEntry * find;
+	map<int, FileEntry *>::iterator itFind;
+	itFind = fileEntryList.find(sector);
+
+	if (itFind != fileEntryList.end())
+	{
+		find = (*itFind).second;
+		find -> openCount --;
+		if (find -> openCount == 0)
+		{
+			delete find -> fileLock;;
+			fileEntryList.erase(itFind);
+			delete find;
+		}
+	}
+	else
+		ASSERT(false);
+
+
+}
+
 //END

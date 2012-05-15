@@ -13,6 +13,7 @@
 
 #include "copyright.h"
 #include "filehdr.h"
+#include "filesys.h"
 #include "openfile.h"
 #include "system.h"
 #ifdef HOST_SPARC
@@ -29,9 +30,15 @@
 
 OpenFile::OpenFile(int sector)
 { 
+    fileLock = fileSystem -> InsertFileEntry(hdrSector);
+    
+    //EDIT BY LIHAO
+    fileLock -> Acquire();
     hdr = new FileHeader;
     hdr->FetchFrom(sector);
     seekPosition = 0;
+    fileLock -> Release();
+    //END
 }
 
 //----------------------------------------------------------------------
@@ -41,6 +48,8 @@ OpenFile::OpenFile(int sector)
 
 OpenFile::~OpenFile()
 {
+	fileSystem ->RemoveFileEntry(hdrSector);
+	ASSERT(hdr != NULL);
     delete hdr;
 }
 
@@ -145,13 +154,19 @@ OpenFile::ReadAt(char *into, int numBytes, int position)
     lastSector = divRoundDown(position + numBytes - 1, SectorSize);
     numSectors = 1 + lastSector - firstSector;
 
-    // read in all the full and partial sectors that we need
+	//EDIT BY LIHAO
+    fileLock -> Acquire();
     buf = new char[numSectors * SectorSize];
     for (i = firstSector; i <= lastSector; i++)	
-        synchDisk->ReadSector(hdr->ByteToSector(i * SectorSize), 
-					&buf[(i - firstSector) * SectorSize]);
+	    synchDisk->ReadSector(hdr->ByteToSector(i * SectorSize), 
+			    &buf[(i - firstSector) * SectorSize]);
 
-    // copy the part we want
+
+    fileLock -> Release();
+	//END
+
+    // read in all the full and partial sectors that we need
+        // copy the part we want
     bcopy(&buf[position - (firstSector * SectorSize)], into, numBytes);
     delete [] buf;
     return numBytes;
@@ -196,10 +211,12 @@ OpenFile::WriteAt(char *from, int numBytes, int position)
     bcopy(from, &buf[position - (firstSector * SectorSize)], numBytes);
 
 // write modified sectors back
+	fileLock -> Acquire();
     for (i = firstSector; i <= lastSector; i++)	
         synchDisk->WriteSector(hdr->ByteToSector(i * SectorSize), 
 					&buf[(i - firstSector) * SectorSize]);
     delete [] buf;
+    	fileLock -> Release();
     return numBytes;
 }
 

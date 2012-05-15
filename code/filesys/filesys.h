@@ -37,7 +37,6 @@
 
 #include "copyright.h"
 #include "openfile.h"
-
 #ifdef FILESYS_STUB 		// Temporarily implement file system calls as 
 				// calls to UNIX, until the real file system
 				// implementation is available
@@ -66,6 +65,7 @@ class FileSystem {
 
 #else // FILESYS
 class Lock;
+
 class FileSystem {
   public:
     FileSystem(bool format);		// Initialize the file system.
@@ -99,7 +99,9 @@ class FileSystem {
 public:
 	bool MakeDir(char *name);
 	bool RemoveDir(char *name);
-	
+
+	Lock * InsertFileEntry(int sector);
+	bool RemoveFileEntry(int sector);
   //END
 };
 

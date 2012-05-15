@@ -29,6 +29,7 @@ Semaphore * MailLock;
 
 #ifdef FILESYS_NEEDED
 FileSystem  *fileSystem;
+map<int, FileEntry *> fileEntryList;
 #endif
 
 #ifdef FILESYS

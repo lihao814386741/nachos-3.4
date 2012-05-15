@@ -63,6 +63,14 @@ extern Machine* machine;	// user program memory and registers
 #ifdef FILESYS_NEEDED 		// FILESYS or FILESYS_STUB 
 #include "filesys.h"
 extern FileSystem  *fileSystem;
+class FileEntry{
+	public :
+		int hdrSector;
+		int openCount;
+		Lock* fileLock;
+		vector<OpenFile *> openFileList;
+};
+extern map <int, FileEntry *>fileEntryList;
 #endif
 
 #ifdef FILESYS

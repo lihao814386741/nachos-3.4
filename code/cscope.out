@@ -1,4 +1,4 @@
-cscope 15 $HOME/Program/os/nachos-3.4/code -q 0000001513 0000182196
+cscope 15 $HOME/Program/os/nachos-3.4/code -q 0000001541 0000188193
 	@bin/coff.h
 
 5 
@@ -12554,22 +12554,26 @@ NumDúe˘
 "
 
 53 
+	~"sy°em.h
+"
+
+54 
 	~"../thªads/synch.h
 "
 
-58 
+59 
 	#FªeM≠Se˘‹
  0
 
 	)
 
-59 
+60 
 	#Dúe˘‹ySe˘‹
  1
 
 	)
 
-64 
+65 
 	#FªeM≠FûeSize
  (
 NumSe˘‹s
@@ -12579,13 +12583,13 @@ BôsInByã
 
 	)
 
-65 
+66 
 	#NumDúE¡rõs
  10
 
 	)
 
-66 
+67 
 	#Dúe˘‹yFûeSize
  ((
 Dúe˘‹yE¡ry
@@ -12595,7 +12599,7 @@ NumDúE¡rõs
 
 	)
 
-81 
+82 
 	gFûeSy°em
 ::
 	$FûeSy°em
@@ -12605,11 +12609,11 @@ boﬁ
 f‹m©
 )
 
-83 
+84 
 	`DEBUG
 ('f', "InitializingÅhe file system.\n");
 
-84 
+85 
 sysLock
  = 
 √w
@@ -12617,11 +12621,11 @@ sysLock
 	`Lock
 ("sysLock");
 
-85 i‡(
+86 i‡(
 f‹m©
 ) {
 
-86 
+87 
 BôM≠
  *
 ‰ìM≠
@@ -12633,7 +12637,7 @@ BôM≠
 NumSe˘‹s
 );
 
-87 
+88 
 Dúe˘‹y
  *
 dúe˘‹y
@@ -12645,7 +12649,7 @@ dúe˘‹y
 NumDúE¡rõs
 );
 
-88 
+89 
 FûeHódî
  *
 m≠Hdr
@@ -12653,7 +12657,7 @@ m≠Hdr
 √w
  FileHeader;
 
-89 
+90 
 FûeHódî
  *
 dúHdr
@@ -12661,11 +12665,11 @@ dúHdr
 √w
  FileHeader;
 
-91 
+92 
 	`DEBUG
 ('f', "FormattingÅhe file system.\n");
 
-95 
+96 
 ‰ìM≠
 ->
 	`M¨k
@@ -12673,7 +12677,7 @@ dúHdr
 FªeM≠Se˘‹
 );
 
-96 
+97 
 ‰ìM≠
 ->
 	`M¨k
@@ -12681,7 +12685,7 @@ FªeM≠Se˘‹
 Dúe˘‹ySe˘‹
 );
 
-101 
+102 
 	`ASSERT
 (
 m≠Hdr
@@ -12693,7 +12697,7 @@ m≠Hdr
 FªeM≠FûeSize
 ));
 
-102 
+103 
 	`ASSERT
 (
 dúHdr
@@ -12705,11 +12709,11 @@ dúHdr
 Dúe˘‹yFûeSize
 ));
 
-109 
+110 
 	`DEBUG
 ('f', "Writing headers backÅo disk.\n");
 
-110 
+111 
 m≠Hdr
 ->
 	`WrôeBack
@@ -12717,7 +12721,7 @@ m≠Hdr
 FªeM≠Se˘‹
 );
 
-111 
+112 
 dúHdr
 ->
 	`WrôeBack
@@ -12725,7 +12729,7 @@ dúHdr
 Dúe˘‹ySe˘‹
 );
 
-117 
+118 
 ‰ìM≠Fûe
  = 
 √w
@@ -12735,7 +12739,7 @@ Dúe˘‹ySe˘‹
 FªeM≠Se˘‹
 );
 
-118 
+119 
 dúe˘‹yFûe
  = 
 √w
@@ -12745,11 +12749,11 @@ dúe˘‹yFûe
 Dúe˘‹ySe˘‹
 );
 
-126 
+127 
 	`DEBUG
 ('f', "Writing bitmapánd directory backÅo disk.\n");
 
-127 
+128 
 ‰ìM≠
 ->
 	`WrôeBack
@@ -12757,7 +12761,7 @@ Dúe˘‹ySe˘‹
 ‰ìM≠Fûe
 );
 
-128 
+129 
 dúe˘‹y
 ->
 	`WrôeBack
@@ -12765,47 +12769,47 @@ dúe˘‹y
 dúe˘‹yFûe
 );
 
-130 i‡(
+131 i‡(
 	`DebugIsE«bÀd
 ('f')) {
 
-131 
+132 
 ‰ìM≠
 ->
 	`Pröt
 ();
 
-132 
+133 
 dúe˘‹y
 ->
 	`Pröt
 (0);
 
-134 
+135 
 dñëe
  
 ‰ìM≠
 ;
 
-135 
+136 
 dñëe
  
 dúe˘‹y
 ;
 
-136 
+137 
 dñëe
  
 m≠Hdr
 ;
 
-137 
+138 
 dñëe
  
 dúHdr
 ;
 
-142 
+143 
 ‰ìM≠Fûe
  = 
 √w
@@ -12815,7 +12819,7 @@ dúHdr
 FªeM≠Se˘‹
 );
 
-143 
+144 
 dúe˘‹yFûe
  = 
 √w
@@ -12825,15 +12829,15 @@ dúe˘‹yFûe
 Dúe˘‹ySe˘‹
 );
 
-145 
+146 
 	}
 }
 
-176 
+177 
 boﬁ
 
 
-177 
+178 
 	gFûeSy°em
 ::
 	$Cª©e
@@ -12843,41 +12847,41 @@ boﬁ
 öôülSize
 )
 
-179 
+180 
 sysLock
  -> 
 	`Acquúe
 ();
 
-180 
+181 
 Dúe˘‹y
  *
 dúe˘‹y
 ;
 
-181 
+182 
 BôM≠
  *
 ‰ìM≠
 ;
 
-182 
+183 
 FûeHódî
  *
 hdr
 ;
 
-183 
+184 
 £˘‹
 ;
 
-184 
+185 
 boﬁ
  
 suc˚ss
 ;
 
-186 
+187 
 	`DEBUG
 ('f', "Cª©ög fûê%s, sizê%d\n", 
 «me
@@ -12885,7 +12889,7 @@ suc˚ss
 öôülSize
 );
 
-188 
+189 
 dúe˘‹y
  = 
 √w
@@ -12895,7 +12899,7 @@ dúe˘‹y
 NumDúE¡rõs
 );
 
-189 
+190 
 dúe˘‹y
 ->
 	`FëchFrom
@@ -12903,7 +12907,7 @@ dúe˘‹y
 dúe˘‹yFûe
 );
 
-191 i‡(
+192 i‡(
 dúe˘‹y
 ->
 	`Föd
@@ -12911,13 +12915,13 @@ dúe˘‹y
 «me
 ) != -1)
 
-192 
+193 
 suc˚ss
  = 
 FALSE
 ;
 
-194 
+195 
 ‰ìM≠
  = 
 √w
@@ -12927,7 +12931,7 @@ FALSE
 NumSe˘‹s
 );
 
-195 
+196 
 ‰ìM≠
 ->
 	`FëchFrom
@@ -12935,7 +12939,7 @@ NumSe˘‹s
 ‰ìM≠Fûe
 );
 
-196 
+197 
 £˘‹
  = 
 ‰ìM≠
@@ -12943,17 +12947,17 @@ NumSe˘‹s
 	`Föd
 ();
 
-197 i‡(
+198 i‡(
 £˘‹
  == -1)
 
-198 
+199 
 suc˚ss
  = 
 FALSE
 ;
 
-199 i‡(!
+200 i‡(!
 dúe˘‹y
 ->
 	`Add
@@ -12963,13 +12967,13 @@ dúe˘‹y
 £˘‹
 ))
 
-200 
+201 
 suc˚ss
  = 
 FALSE
 ;
 
-202 
+203 
 hdr
  = 
 √w
@@ -12977,7 +12981,7 @@ hdr
 FûeHódî
 ;
 
-203 i‡(!
+204 i‡(!
 hdr
 ->
 	`AŒoˇã
@@ -12987,19 +12991,19 @@ hdr
 öôülSize
 ))
 
-204 
+205 
 suc˚ss
  = 
 FALSE
 ;
 
-206 
+207 
 suc˚ss
  = 
 TRUE
 ;
 
-208 
+209 
 hdr
 ->
 	`WrôeBack
@@ -13007,7 +13011,7 @@ hdr
 £˘‹
 );
 
-209 
+210 
 dúe˘‹y
 ->
 	`WrôeBack
@@ -13015,7 +13019,7 @@ dúe˘‹y
 dúe˘‹yFûe
 );
 
-210 
+211 
 ‰ìM≠
 ->
 	`WrôeBack
@@ -13023,43 +13027,43 @@ dúe˘‹yFûe
 ‰ìM≠Fûe
 );
 
-212 
+213 
 dñëe
  
 hdr
 ;
 
-214 
+215 
 dñëe
  
 ‰ìM≠
 ;
 
-216 
+217 
 dñëe
  
 dúe˘‹y
 ;
 
-217 
+218 
 sysLock
  -> 
 	`Rñó£
 ();
 
-218  
+219  
 suc˚ss
 ;
 
-219 
+220 
 	}
 }
 
-231 
+232 
 O≥nFûe
  *
 
-232 
+233 
 	gFûeSy°em
 ::
 	$O≥n
@@ -13067,7 +13071,7 @@ O≥nFûe
 «me
 )
 
-234 
+235 
 Dúe˘‹y
  *
 dúe˘‹y
@@ -13079,7 +13083,7 @@ dúe˘‹y
 NumDúE¡rõs
 );
 
-235 
+236 
 O≥nFûe
  *
 ›íFûe
@@ -13087,17 +13091,17 @@ O≥nFûe
 NULL
 ;
 
-236 
+237 
 £˘‹
 ;
 
-238 
+239 
 	`DEBUG
 ('f', "O≥nög fûê%s\n", 
 «me
 );
 
-239 
+240 
 dúe˘‹y
 ->
 	`FëchFrom
@@ -13105,7 +13109,7 @@ dúe˘‹y
 dúe˘‹yFûe
 );
 
-240 
+241 
 £˘‹
  = 
 dúe˘‹y
@@ -13115,11 +13119,11 @@ dúe˘‹y
 «me
 );
 
-241 i‡(
+242 i‡(
 £˘‹
  >= 0)
 
-242 
+243 
 ›íFûe
  = 
 √w
@@ -13129,25 +13133,25 @@ dúe˘‹y
 £˘‹
 );
 
-243 
+244 
 dñëe
  
 dúe˘‹y
 ;
 
-244  
+245  
 ›íFûe
 ;
 
-245 
+246 
 	}
 }
 
-261 
+262 
 boﬁ
 
 
-262 
+263 
 	gFûeSy°em
 ::
 	$Remove
@@ -13155,29 +13159,35 @@ boﬁ
 «me
 )
 
-264 
+265 
+sysLock
+ -> 
+	`Acquúe
+();
+
+266 
 Dúe˘‹y
  *
 dúe˘‹y
 ;
 
-265 
+267 
 BôM≠
  *
 ‰ìM≠
 ;
 
-266 
+268 
 FûeHódî
  *
 fûeHdr
 ;
 
-267 
+269 
 £˘‹
 ;
 
-269 
+271 
 dúe˘‹y
  = 
 √w
@@ -13187,7 +13197,7 @@ dúe˘‹y
 NumDúE¡rõs
 );
 
-270 
+272 
 dúe˘‹y
 ->
 	`FëchFrom
@@ -13195,7 +13205,7 @@ dúe˘‹y
 dúe˘‹yFûe
 );
 
-271 
+273 
 £˘‹
  = 
 dúe˘‹y
@@ -13205,21 +13215,89 @@ dúe˘‹y
 «me
 );
 
-272 i‡(
+274 i‡(
 £˘‹
  == -1) {
 
-273 
+275 
 dñëe
  
 dúe˘‹y
 ;
 
-274  
+276  
 FALSE
 ;
 
-276 
+280 
+FûeE¡ry
+ *
+föd
+;
+
+281 
+m≠
+<, 
+FûeE¡ry
+*>::
+ôî©‹
+ 
+ôFöd
+;
+
+282 
+ôFöd
+ = 
+fûeE¡ryLi°
+.
+	`föd
+(
+£˘‹
+);
+
+283 i‡(
+ôFöd
+ !
+fûeE¡ryLi°
+.
+	`íd
+())
+
+285 
+föd
+ = (*
+ôFöd
+).
+£c⁄d
+;
+
+286 i‡(
+föd
+ -> 
+›íCou¡
+ > 0)
+
+288 
+sysLock
+-> 
+	`Rñó£
+();
+
+289 
+	`¥ötf
+("Fûê%†ö u£\n", 
+«me
+);
+
+294 i‡(
+dúe˘‹y
+ -> 
+	`Remove
+(
+«me
+))
+
+297 
 fûeHdr
  = 
 √w
@@ -13227,7 +13305,7 @@ fûeHdr
 FûeHódî
 ;
 
-277 
+298 
 fûeHdr
 ->
 	`FëchFrom
@@ -13235,7 +13313,7 @@ fûeHdr
 £˘‹
 );
 
-279 
+300 
 ‰ìM≠
  = 
 √w
@@ -13245,7 +13323,7 @@ fûeHdr
 NumSe˘‹s
 );
 
-280 
+301 
 ‰ìM≠
 ->
 	`FëchFrom
@@ -13253,7 +13331,7 @@ NumSe˘‹s
 ‰ìM≠Fûe
 );
 
-282 
+303 
 fûeHdr
 ->
 	`DóŒoˇã
@@ -13261,7 +13339,7 @@ fûeHdr
 ‰ìM≠
 );
 
-283 
+304 
 ‰ìM≠
 ->
 	`CÀ¨
@@ -13269,7 +13347,7 @@ fûeHdr
 £˘‹
 );
 
-284 
+305 
 dúe˘‹y
 ->
 	`Remove
@@ -13277,131 +13355,73 @@ dúe˘‹y
 «me
 );
 
-286 
+307 
 ‰ìM≠
 ->
 	`WrôeBack
 (
 ‰ìM≠Fûe
-);
-
-287 
-dúe˘‹y
-->
-	`WrôeBack
-(
-dúe˘‹yFûe
-);
-
-288 
-dñëe
- 
-fûeHdr
-;
-
-289 
-dñëe
- 
-dúe˘‹y
-;
-
-290 
-dñëe
- 
-‰ìM≠
-;
-
-292 
-	`¥ötf
-("DñëêFûê%†Suc˚ss\n", 
-«me
-);
-
-295  
-TRUE
-;
-
-296 
-	}
-}
-
-304 
-	gFûeSy°em
-::
-	$Li°
-()
-
-306 
-Dúe˘‹y
- *
-dúe˘‹y
- = 
-√w
- 
-	`Dúe˘‹y
-(
-NumDúE¡rõs
 );
 
 308 
 dúe˘‹y
 ->
-	`FëchFrom
+	`WrôeBack
 (
 dúe˘‹yFûe
 );
 
 309 
-dúe˘‹y
-->
-	`Li°
-(0);
+dñëe
+ 
+fûeHdr
+;
 
-310 
+311 
+	`¥ötf
+("DñëêFûê%†Suc˚ss\n", 
+«me
+);
+
+315 
+	`¥ötf
+("DñëêFûê%†Eº‹\n", 
+«me
+);
+
+318 
 dñëe
  
 dúe˘‹y
 ;
 
-311 
+319 
+dñëe
+ 
+‰ìM≠
+;
+
+320 
+sysLock
+ -> 
+	`Rñó£
+();
+
+330  
+TRUE
+;
+
+331 
 	}
 }
 
-324 
+339 
 	gFûeSy°em
 ::
-	$Pröt
+	$Li°
 ()
 
-326 
-FûeHódî
- *
-bôHdr
- = 
-√w
- FileHeader;
-
-327 
-FûeHódî
- *
-dúHdr
- = 
-√w
- FileHeader;
-
-328 
-BôM≠
- *
-‰ìM≠
- = 
-√w
- 
-	`BôM≠
-(
-NumSe˘‹s
-);
-
-329 
+341 
 Dúe˘‹y
  *
 dúe˘‹y
@@ -13413,57 +13433,7 @@ dúe˘‹y
 NumDúE¡rõs
 );
 
-331 
-	`¥ötf
-("Bit map file header:\n");
-
-332 
-bôHdr
-->
-	`FëchFrom
-(
-FªeM≠Se˘‹
-);
-
-333 
-bôHdr
-->
-	`Pröt
-();
-
-335 
-	`¥ötf
-("Directory file header:\n");
-
-336 
-dúHdr
-->
-	`FëchFrom
-(
-Dúe˘‹ySe˘‹
-);
-
-337 
-dúHdr
-->
-	`Pröt
-();
-
-339 
-‰ìM≠
-->
-	`FëchFrom
-(
-‰ìM≠Fûe
-);
-
-340 
-‰ìM≠
-->
-	`Pröt
-();
-
-342 
+343 
 dúe˘‹y
 ->
 	`FëchFrom
@@ -13471,93 +13441,47 @@ dúe˘‹y
 dúe˘‹yFûe
 );
 
-343 
+344 
 dúe˘‹y
 ->
-	`Pröt
+	`Li°
 (0);
 
 345 
 dñëe
  
-bôHdr
+dúe˘‹y
 ;
 
 346 
-dñëe
- 
-dúHdr
-;
-
-347 
-dñëe
- 
-‰ìM≠
-;
-
-348 
-dñëe
- 
-dúe˘‹y
-;
-
-349 
 	}
 }
 
-352 
-boﬁ
-
-
-353 
+359 
 	gFûeSy°em
 ::
-	$MakeDú
-(* 
-«me
-)
-
-355 
-sysLock
- -> 
-	`Acquúe
-();
-
-356 
-Dúe˘‹y
- *
-dúe˘‹y
-;
-
-357 
-BôM≠
- *
-‰ìM≠
-;
-
-358 
-boﬁ
- 
-suc˚ss
-;
-
-360 
-dúe˘‹y
- = 
-√w
- 
-	`Dúe˘‹y
-(0);
+	$Pröt
+()
 
 361 
-dúe˘‹y
- -> 
-	`FëchFrom
-(
-dúe˘‹yFûe
-);
+FûeHódî
+ *
+bôHdr
+ = 
+√w
+ FileHeader;
+
+362 
+FûeHódî
+ *
+dúHdr
+ = 
+√w
+ FileHeader;
 
 363 
+BôM≠
+ *
 ‰ìM≠
  = 
 √w
@@ -13568,6 +13492,172 @@ NumSe˘‹s
 );
 
 364 
+Dúe˘‹y
+ *
+dúe˘‹y
+ = 
+√w
+ 
+	`Dúe˘‹y
+(
+NumDúE¡rõs
+);
+
+366 
+	`¥ötf
+("Bit map file header:\n");
+
+367 
+bôHdr
+->
+	`FëchFrom
+(
+FªeM≠Se˘‹
+);
+
+368 
+bôHdr
+->
+	`Pröt
+();
+
+370 
+	`¥ötf
+("Directory file header:\n");
+
+371 
+dúHdr
+->
+	`FëchFrom
+(
+Dúe˘‹ySe˘‹
+);
+
+372 
+dúHdr
+->
+	`Pröt
+();
+
+374 
+‰ìM≠
+->
+	`FëchFrom
+(
+‰ìM≠Fûe
+);
+
+375 
+‰ìM≠
+->
+	`Pröt
+();
+
+377 
+dúe˘‹y
+->
+	`FëchFrom
+(
+dúe˘‹yFûe
+);
+
+378 
+dúe˘‹y
+->
+	`Pröt
+(0);
+
+380 
+dñëe
+ 
+bôHdr
+;
+
+381 
+dñëe
+ 
+dúHdr
+;
+
+382 
+dñëe
+ 
+‰ìM≠
+;
+
+383 
+dñëe
+ 
+dúe˘‹y
+;
+
+384 
+	}
+}
+
+387 
+boﬁ
+
+
+388 
+	gFûeSy°em
+::
+	$MakeDú
+(* 
+«me
+)
+
+390 
+sysLock
+ -> 
+	`Acquúe
+();
+
+391 
+Dúe˘‹y
+ *
+dúe˘‹y
+;
+
+392 
+BôM≠
+ *
+‰ìM≠
+;
+
+393 
+boﬁ
+ 
+suc˚ss
+;
+
+395 
+dúe˘‹y
+ = 
+√w
+ 
+	`Dúe˘‹y
+(0);
+
+396 
+dúe˘‹y
+ -> 
+	`FëchFrom
+(
+dúe˘‹yFûe
+);
+
+398 
+‰ìM≠
+ = 
+√w
+ 
+	`BôM≠
+(
+NumSe˘‹s
+);
+
+399 
 ‰ìM≠
  -> 
 	`FëchFrom
@@ -13575,7 +13665,7 @@ NumSe˘‹s
 ‰ìM≠Fûe
 );
 
-366 i‡(!
+401 i‡(!
 dúe˘‹y
  -> 
 	`AddDú
@@ -13583,25 +13673,25 @@ dúe˘‹y
 «me
 ))
 
-367 
+402 
 suc˚ss
  = 
 FALSE
 ;
 
-369 
+404 
 suc˚ss
  = 
 TRUE
 ;
 
-371 
+406 
 	`DEBUG
 ('f', "Cª©ög Fﬁdî %s\n", 
 «me
 );
 
-373 
+408 
 dúe˘‹y
  -> 
 	`WrôeBack
@@ -13609,7 +13699,7 @@ dúe˘‹y
 dúe˘‹yFûe
 );
 
-374 
+409 
 ‰ìM≠
  -> 
 	`WrôeBack
@@ -13617,37 +13707,37 @@ dúe˘‹yFûe
 ‰ìM≠Fûe
 );
 
-376 
+411 
 dñëe
  
 ‰ìM≠
 ;
 
-377 
+412 
 dñëe
  
 dúe˘‹y
 ;
 
-379 
+414 
 sysLock
  -> 
 	`Rñó£
 ();
 
-381  
+416  
 suc˚ss
 ;
 
-388 
+423 
 	}
 }
 
-390 
+425 
 boﬁ
 
 
-391 
+426 
 	gFûeSy°em
 ::
 	$Clo£
@@ -13657,13 +13747,239 @@ O≥nFûe
 fûe
 )
 
-393 
+428 
 dñëe
  
 fûe
 ;
 
-394 
+429 
+	}
+}
+
+430 
+Lock
+*
+
+431 
+	gFûeSy°em
+::
+	$In£πFûeE¡ry
+(
+£˘‹
+)
+
+433 
+FûeE¡ry
+ * 
+födFE
+;
+
+434 
+	`DEBUG
+('f', "In£πFûeE¡ry Se˘‹:%d\n", 
+£˘‹
+);
+
+435 
+m≠
+<, 
+FûeE¡ry
+ *> 
+ã°Li°
+;
+
+436 
+m≠
+<, 
+FûeE¡ry
+ *>::
+ôî©‹
+ 
+ôFöd
+ = 
+fûeE¡ryLi°
+.
+	`föd
+(
+£˘‹
+);
+
+438 i‡(
+ôFöd
+ !
+fûeE¡ryLi°
+.
+	`íd
+())
+
+440 
+födFE
+ = (*
+ôFöd
+).
+£c⁄d
+;
+
+441 
+födFE
+ -> 
+›íCou¡
+++;
+
+445 
+födFE
+ = 
+√w
+ 
+FûeE¡ry
+;
+
+446 
+födFE
+ -> 
+hdrSe˘‹
+ = 
+£˘‹
+;
+
+447 
+födFE
+ -> 
+›íCou¡
+ = 1;
+
+448 
+födFE
+ -> 
+fûeLock
+ = 
+√w
+ 
+	`Lock
+("FileLock");
+
+449 
+fûeE¡ryLi°
+.
+	`ö£π
+(
+°d
+::
+∑ú
+<, 
+FûeE¡ry
+ *>(
+£˘‹
+, 
+födFE
+));
+
+453  
+födFE
+ -> 
+fûeLock
+;
+
+454 
+	}
+}
+
+455 
+boﬁ
+
+
+456 
+	gFûeSy°em
+::
+	$RemoveFûeE¡ry
+(
+£˘‹
+)
+
+458 
+FûeE¡ry
+ * 
+föd
+;
+
+459 
+m≠
+<, 
+FûeE¡ry
+ *>::
+ôî©‹
+ 
+ôFöd
+;
+
+460 
+ôFöd
+ = 
+fûeE¡ryLi°
+.
+	`föd
+(
+£˘‹
+);
+
+462 i‡(
+ôFöd
+ !
+fûeE¡ryLi°
+.
+	`íd
+())
+
+464 
+föd
+ = (*
+ôFöd
+).
+£c⁄d
+;
+
+465 
+föd
+ -> 
+›íCou¡
+ --;
+
+466 i‡(
+föd
+ -> 
+›íCou¡
+ == 0)
+
+468 
+dñëe
+ 
+föd
+ -> 
+fûeLock
+;;
+
+469 
+fûeE¡ryLi°
+.
+	`îa£
+(
+ôFöd
+);
+
+470 
+dñëe
+ 
+föd
+;
+
+474 
+	`ASSERT
+(
+Ál£
+);
+
+477 
 	}
 }
 
@@ -13687,19 +14003,19 @@ FS_H
 	~"›ífûe.h
 "
 
-41 #ifde‡
+40 #ifde‡
 FILESYS_STUB
 
 
-44 ˛as†
+43 ˛as†
 	cFûeSy°em
  {
 
-45 
+44 
 	mpublic
 :
 
-46 
+45 
 	$FûeSy°em
 (
 boﬁ
@@ -13707,7 +14023,7 @@ boﬁ
 f‹m©
 ) {}
 
-48 
+47 
 boﬁ
  
 	$Cª©e
@@ -13717,7 +14033,7 @@ boﬁ
 öôülSize
 ) {
 
-49 
+48 
 fûeDes¸ùt‹
  = 
 	`O≥nF‹Wrôe
@@ -13725,27 +14041,27 @@ fûeDes¸ùt‹
 «me
 );
 
-51 i‡(
+50 i‡(
 fûeDes¸ùt‹
  =-1Ë 
 FALSE
 ;
 
-52 
+51 
 	`Clo£
 (
 fûeDes¸ùt‹
 );
 
-53  
+52  
 TRUE
 ;
 
-54 
+53 
 	}
 }
 
-56 
+55 
 O≥nFûe
 * 
 	$O≥n
@@ -13753,7 +14069,7 @@ O≥nFûe
 «me
 ) {
 
-57 
+56 
 fûeDes¸ùt‹
  = 
 	`O≥nF‹RódWrôe
@@ -13763,13 +14079,13 @@ fûeDes¸ùt‹
 FALSE
 );
 
-59 i‡(
+58 i‡(
 fûeDes¸ùt‹
  =-1Ë 
 NULL
 ;
 
-60  
+59  
 √w
  
 	`O≥nFûe
@@ -13777,11 +14093,11 @@ NULL
 fûeDes¸ùt‹
 );
 
-61 
+60 
 	}
 }
 
-63 
+62 
 boﬁ
  
 	$Remove
@@ -13793,7 +14109,7 @@ boﬁ
 	}
 }
 
-68 
+67 
 ˛ass
  
 	gLock
@@ -13899,6 +14215,22 @@ boﬁ
 RemoveDú
 (*
 «me
+);
+
+103 
+Lock
+ * 
+In£πFûeE¡ry
+(
+£˘‹
+);
+
+104 
+boﬁ
+ 
+RemoveFûeE¡ry
+(
+£˘‹
 );
 
 	@filesys/fstest.cc
@@ -14518,22 +14850,26 @@ FûeName
 "
 
 16 
-	~"›ífûe.h
+	~"fûesys.h
 "
 
 17 
+	~"›ífûe.h
+"
+
+18 
 	~"sy°em.h
 "
 
-18 #ifde‡
+19 #ifde‡
 HOST_SPARC
 
 
-19 
+20 
 	~<°rögs.h
 >
 
-30 
+31 
 	gO≥nFûe
 ::
 	$O≥nFûe
@@ -14541,7 +14877,23 @@ HOST_SPARC
 £˘‹
 )
 
-32 
+33 
+fûeLock
+ = 
+fûeSy°em
+ -> 
+	`In£πFûeE¡ry
+(
+hdrSe˘‹
+);
+
+36 
+fûeLock
+ -> 
+	`Acquúe
+();
+
+37 
 hdr
  = 
 √w
@@ -14549,7 +14901,7 @@ hdr
 FûeHódî
 ;
 
-33 
+38 
 hdr
 ->
 	`FëchFrom
@@ -14557,31 +14909,53 @@ hdr
 £˘‹
 );
 
-34 
+39 
 £ekPosôi⁄
  = 0;
 
-35 
+40 
+fûeLock
+ -> 
+	`Rñó£
+();
+
+42 
 	}
 }
 
-42 
+49 
 	gO≥nFûe
 ::~
 	$O≥nFûe
 ()
 
-44 
+51 
+fûeSy°em
+ ->
+	`RemoveFûeE¡ry
+(
+hdrSe˘‹
+);
+
+52 
+	`ASSERT
+(
+hdr
+ !
+NULL
+);
+
+53 
 dñëe
  
 hdr
 ;
 
-45 
+54 
 	}
 }
 
-56 
+65 
 	gO≥nFûe
 ::
 	$Sìk
@@ -14589,17 +14963,17 @@ hdr
 posôi⁄
 )
 
-58 
+67 
 £ekPosôi⁄
  = 
 posôi⁄
 ;
 
-59 
+68 
 	}
 }
 
-75 
+84 
 	gO≥nFûe
 ::
 	$Ród
@@ -14609,7 +14983,7 @@ posôi⁄
 numByãs
 )
 
-77 
+86 
 ªsu…
  = 
 	`RódAt
@@ -14621,21 +14995,21 @@ numByãs
 £ekPosôi⁄
 );
 
-78 
+87 
 £ekPosôi⁄
  +
 ªsu…
 ;
 
-79  
+88  
 ªsu…
 ;
 
-80 
+89 
 	}
 }
 
-82 
+91 
 	gO≥nFûe
 ::
 	$RódI¡
@@ -14643,7 +15017,7 @@ numByãs
 öto
 )
 
-84 
+93 
 ªsu…
  = 
 	`RódAt
@@ -14653,21 +15027,21 @@ numByãs
 £ekPosôi⁄
 );
 
-85 
+94 
 £ekPosôi⁄
  +
 ªsu…
 ;
 
-86  
+95  
 ªsu…
 ;
 
-87 
+96 
 	}
 }
 
-89 
+98 
 	gO≥nFûe
 ::
 	$WrôeI¡
@@ -14675,7 +15049,7 @@ numByãs
 ‰om
  )
 
-91 
+100 
 ªsu…
  = 
 	`WrôeAt
@@ -14685,21 +15059,21 @@ numByãs
 £ekPosôi⁄
 );
 
-92 
+101 
 £ekPosôi⁄
  +
 ªsu…
 ;
 
-93  
+102  
 ªsu…
 ;
 
-94 
+103 
 	}
 }
 
-97 
+106 
 	gO≥nFûe
 ::
 	$Wrôe
@@ -14709,7 +15083,7 @@ numByãs
 numByãs
 )
 
-99 
+108 
 ªsu…
  = 
 	`WrôeAt
@@ -14721,21 +15095,21 @@ numByãs
 £ekPosôi⁄
 );
 
-100 
+109 
 £ekPosôi⁄
  +
 ªsu…
 ;
 
-101  
+110  
 ªsu…
 ;
 
-102 
+111 
 	}
 }
 
-131 
+140 
 	gO≥nFûe
 ::
 	$RódAt
@@ -14747,7 +15121,7 @@ numByãs
 posôi⁄
 )
 
-133 
+142 
 fûeLígth
  = 
 hdr
@@ -14755,7 +15129,7 @@ hdr
 	`FûeLígth
 ();
 
-134 
+143 
 i
 , 
 fú°Se˘‹
@@ -14765,11 +15139,11 @@ fú°Se˘‹
 numSe˘‹s
 ;
 
-135 *
+144 *
 buf
 ;
 
-137 i‡((
+146 i‡((
 numByãs
  <0Ë|| (
 posôi⁄
@@ -14777,7 +15151,7 @@ posôi⁄
 fûeLígth
 ))
 
-139 i‡((
+148 i‡((
 posôi⁄
  + 
 numByãs
@@ -14785,7 +15159,7 @@ numByãs
 fûeLígth
 )
 
-140 
+149 
 numByãs
  = 
 fûeLígth
@@ -14793,11 +15167,11 @@ fûeLígth
 posôi⁄
 ;
 
-141 
+150 
 	`DEBUG
 ('f', "Reading %d bytesát %d, from file ofÜength %d.\n",
 
-142 
+151 
 numByãs
 , 
 posôi⁄
@@ -14805,7 +15179,7 @@ posôi⁄
 fûeLígth
 );
 
-144 
+153 
 fú°Se˘‹
  = 
 	`divRoundDown
@@ -14815,7 +15189,7 @@ posôi⁄
 Se˘‹Size
 );
 
-145 
+154 
 œ°Se˘‹
  = 
 	`divRoundDown
@@ -14827,7 +15201,7 @@ numByãs
 Se˘‹Size
 );
 
-146 
+155 
 numSe˘‹s
  = 1 + 
 œ°Se˘‹
@@ -14835,7 +15209,13 @@ numSe˘‹s
 fú°Se˘‹
 ;
 
-149 
+158 
+fûeLock
+ -> 
+	`Acquúe
+();
+
+159 
 buf
  = 
 √w
@@ -14845,7 +15225,7 @@ numSe˘‹s
 Se˘‹Size
 ];
 
-150 
+160 
 i
  = 
 fú°Se˘‹
@@ -14853,7 +15233,7 @@ fú°Se˘‹
 œ°Se˘‹
 ; i++)
 
-151 
+161 
 synchDisk
 ->
 	`RódSe˘‹
@@ -14867,7 +15247,7 @@ i
 Se˘‹Size
 ),
 
-152 &
+162 &
 buf
 [(
 i
@@ -14877,7 +15257,13 @@ fú°Se˘‹
 Se˘‹Size
 ]);
 
-155 
+165 
+fûeLock
+ -> 
+	`Rñó£
+();
+
+170 
 	`bc›y
 (&
 buf
@@ -14893,21 +15279,21 @@ Se˘‹Size
 numByãs
 );
 
-156 
+171 
 dñëe
  [] 
 buf
 ;
 
-157  
+172  
 numByãs
 ;
 
-158 
+173 
 	}
 }
 
-161 
+176 
 	gO≥nFûe
 ::
 	$WrôeAt
@@ -14919,7 +15305,7 @@ numByãs
 posôi⁄
 )
 
-163 
+178 
 fûeLígth
  = 
 hdr
@@ -14927,7 +15313,7 @@ hdr
 	`FûeLígth
 ();
 
-164 
+179 
 i
 , 
 fú°Se˘‹
@@ -14937,7 +15323,7 @@ fú°Se˘‹
 numSe˘‹s
 ;
 
-165 
+180 
 boﬁ
  
 fú°Alig√d
@@ -14945,11 +15331,11 @@ fú°Alig√d
 œ°Alig√d
 ;
 
-166 *
+181 *
 buf
 ;
 
-168 i‡((
+183 i‡((
 numByãs
  <0Ë|| (
 posôi⁄
@@ -14957,7 +15343,7 @@ posôi⁄
 fûeLígth
 ))
 
-170 i‡((
+185 i‡((
 posôi⁄
  + 
 numByãs
@@ -14965,7 +15351,7 @@ numByãs
 fûeLígth
 )
 
-171 
+186 
 numByãs
  = 
 fûeLígth
@@ -14973,11 +15359,11 @@ fûeLígth
 posôi⁄
 ;
 
-172 
+187 
 	`DEBUG
 ('f', "Writing %d bytesát %d, from file ofÜength %d.\n",
 
-173 
+188 
 numByãs
 , 
 posôi⁄
@@ -14985,13 +15371,13 @@ posôi⁄
 fûeLígth
 );
 
-175 
+190 
 hdr
  -> 
 	`SëModifõdTime
 ();
 
-179 
+194 
 fú°Se˘‹
  = 
 	`divRoundDown
@@ -15001,7 +15387,7 @@ posôi⁄
 Se˘‹Size
 );
 
-180 
+195 
 œ°Se˘‹
  = 
 	`divRoundDown
@@ -15013,7 +15399,7 @@ numByãs
 Se˘‹Size
 );
 
-181 
+196 
 numSe˘‹s
  = 1 + 
 œ°Se˘‹
@@ -15021,7 +15407,7 @@ numSe˘‹s
 fú°Se˘‹
 ;
 
-183 
+198 
 buf
  = 
 √w
@@ -15031,7 +15417,7 @@ numSe˘‹s
 Se˘‹Size
 ];
 
-185 
+200 
 fú°Alig√d
  = (
 posôi⁄
@@ -15041,7 +15427,7 @@ fú°Se˘‹
 Se˘‹Size
 ));
 
-186 
+201 
 œ°Alig√d
  = ((
 posôi⁄
@@ -15053,11 +15439,11 @@ numByãs
 Se˘‹Size
 ));
 
-189 i‡(!
+204 i‡(!
 fú°Alig√d
 )
 
-190 
+205 
 	`RódAt
 (
 buf
@@ -15067,7 +15453,7 @@ Se˘‹Size
 fú°Se˘‹
  * SectorSize);
 
-191 i‡(!
+206 i‡(!
 œ°Alig√d
  && ((
 fú°Se˘‹
@@ -15077,7 +15463,7 @@ fú°Se˘‹
 fú°Alig√d
 ))
 
-192 
+207 
 	`RódAt
 (&
 buf
@@ -15089,13 +15475,13 @@ fú°Se˘‹
 Se˘‹Size
 ],
 
-193 
+208 
 Se˘‹Size
 , 
 œ°Se˘‹
  * SectorSize);
 
-196 
+211 
 	`bc›y
 (
 ‰om
@@ -15111,7 +15497,13 @@ Se˘‹Size
 numByãs
 );
 
-199 
+214 
+fûeLock
+ -> 
+	`Acquúe
+();
+
+215 
 i
  = 
 fú°Se˘‹
@@ -15119,7 +15511,7 @@ fú°Se˘‹
 œ°Se˘‹
 ; i++)
 
-200 
+216 
 synchDisk
 ->
 	`WrôeSe˘‹
@@ -15133,7 +15525,7 @@ i
 Se˘‹Size
 ),
 
-201 &
+217 &
 buf
 [(
 i
@@ -15143,33 +15535,39 @@ fú°Se˘‹
 Se˘‹Size
 ]);
 
-202 
+218 
 dñëe
  [] 
 buf
 ;
 
-203  
+219 
+fûeLock
+ -> 
+	`Rñó£
+();
+
+220  
 numByãs
 ;
 
-204 
+221 
 	}
 }
 
-212 
+229 
 	gO≥nFûe
 ::
 	$Lígth
 ()
 
-214  
+231  
 hdr
 ->
 	`FûeLígth
 ();
 
-215 
+232 
 	}
 }
 
@@ -15391,31 +15789,37 @@ fûe
 	gFûeHódî
 ;
 
-64 ˛as†
+63 
+˛ass
+ 
+	gLock
+;
+
+65 ˛as†
 	cO≥nFûe
  {
 
-65 
+66 
 	mpublic
 :
 
-66 
+67 
 O≥nFûe
 (
 £˘‹
 );
 
-68 ~
+69 ~
 O≥nFûe
 ();
 
-70 
+71 
 Sìk
 (
 posôi⁄
 );
 
-73 
+74 
 Ród
 (*
 öto
@@ -15423,7 +15827,7 @@ Ród
 numByãs
 );
 
-77 
+78 
 Wrôe
 (*
 ‰om
@@ -15431,7 +15835,7 @@ Wrôe
 numByãs
 );
 
-79 
+80 
 RódAt
 (*
 öto
@@ -15441,7 +15845,7 @@ numByãs
 posôi⁄
 );
 
-82 
+83 
 WrôeAt
 (*
 ‰om
@@ -15451,42 +15855,48 @@ numByãs
 posôi⁄
 );
 
-84 
+85 
 Lígth
 ();
 
-89 
+90 
 	m¥iv©e
 :
 
-90 
+91 
 FûeHódî
  *
 hdr
 ;
 
-91 
+92 
 	m£ekPosôi⁄
 ;
 
-93 
+94 
 	mpublic
 :
 
-94 
+95 
 RódI¡
 –* 
 öto
  );
 
-95 
+96 
 WrôeI¡
 (* 
 ‰om
  );
 
-96 
+97 
 	mhdrSe˘‹
+;
+
+98 
+Lock
+* 
+	mfûeLock
 ;
 
 	@filesys/synchdisk.cc
@@ -27399,15 +27809,41 @@ Lock
 	$maö
 ()
 
-11 
+10 
+O≥nFûeId
+ * 
+ªsu…
+;
+
+11 *
+a
+;
+
+12 
 	`Cª©e
 ("a");
 
-12 
+13 
+ªsu…
+ = 
 	`O≥n
 ("a");
 
 14 
+	`Ród
+(
+a
+, 126, 
+ªsu…
+);
+
+15 
+	`Clo£
+(
+ªsu…
+);
+
+16 
 	}
 }
 
@@ -28445,7 +28881,9 @@ C⁄sﬁeTe°
 ö
 , *
 out
-);
+), 
+SynchC⁄sﬁeTe°
+(*in, * out);
 
 70 
 MaûTe°
@@ -28604,7 +29042,7 @@ USER_PROGRAM
  == 1)
 
 131 
-	`C⁄sﬁeTe°
+	`SynchC⁄sﬁeTe°
 (
 NULL
 , NULL);
@@ -28616,7 +29054,7 @@ NULL
  > 2);
 
 134 
-	`C⁄sﬁeTe°
+	`SynchC⁄sﬁeTe°
 (*(
 ¨gv
  + 1), *(argv + 2));
@@ -31447,47 +31885,55 @@ FûeSy°em
 	gfûeSy°em
 ;
 
-34 #ifde‡
+32 
+	gm≠
+<, 
+	gFûeE¡ry
+ *> 
+	gfûeE¡ryLi°
+;
+
+35 #ifde‡
 FILESYS
 
 
-35 
+36 
 SynchDisk
  *
 	gsynchDisk
 ;
 
-38 #ifde‡
+39 #ifde‡
 USER_PROGRAM
 
 
-39 
+40 
 Machöe
  *
 	gmachöe
 ;
 
-42 #ifde‡
+43 #ifde‡
 NETWORK
 
 
-43 
+44 
 Po°Offi˚
  *
 	gpo°Offi˚
 ;
 
-48 
+49 
 CÀ™up
 ();
 
-69 
+70 
 	$TimîI¡îru±H™dÀr
 (
 dummy
 )
 
-71 i‡(
+72 i‡(
 öãºu±
 ->
 	`gëSètus
@@ -31495,33 +31941,33 @@ dummy
 IdÀMode
 )
 
-72 
+73 
 öãºu±
 ->
 	`YõldOnRëu∫
 ();
 
-73 
+74 
 	}
 }
 
-76 
+77 
 	$födFªeThªadId
 ()
 
-79 
+80 
 i
  = 1; i <
 MAX_THREAD
 ; ++ i)
 
-81 i‡(!
+82 i‡(!
 thªad_id_is_u£d
 [
 i
 ])
 
-83 
+84 
 thªad_id_is_u£d
 [
 i
@@ -31529,21 +31975,21 @@ i
 åue
 ;
 
-84  
+85  
 i
 ;
 
-88 
+89 
 	}
 }
 
-90 
+91 
 	$‰ìThªadId
 (
 thªad_id
 )
 
-92 
+93 
 thªad_id_is_u£d
 [
 thªad_id
@@ -31551,11 +31997,11 @@ thªad_id
 Ál£
 ;
 
-93 
+94 
 	}
 }
 
-109 
+110 
 	$Inôülize
 (
 ¨gc
@@ -31563,15 +32009,15 @@ thªad_id
 ¨gv
 )
 
-111 
+112 
 ¨gCou¡
 ;
 
-112 * 
+113 * 
 debugArgs
  = "";
 
-113 
+114 
 boﬁ
  
 øndomYõld
@@ -31579,11 +32025,11 @@ boﬁ
 FALSE
 ;
 
-115 #ifde‡
+116 #ifde‡
 USER_PROGRAM
 
 
-116 
+117 
 boﬁ
  
 debugU£rProg
@@ -31591,11 +32037,11 @@ debugU£rProg
 FALSE
 ;
 
-118 #ifde‡
+119 #ifde‡
 FILESYS_NEEDED
 
 
-119 
+120 
 boﬁ
  
 f‹m©
@@ -31603,19 +32049,19 @@ f‹m©
 FALSE
 ;
 
-121 #ifde‡
+122 #ifde‡
 NETWORK
 
 
-122 
+123 
 ªly
  = 1;
 
-123 
+124 
 √äame
  = 0;
 
-126 
+127 
 ¨gc
 --, 
 ¨gv
@@ -31623,47 +32069,47 @@ NETWORK
 ¨gCou¡
 ,árgv +=árgCount) {
 
-127 
+128 
 ¨gCou¡
  = 1;
 
-128 i‡(!
+129 i‡(!
 	`°rcmp
 (*
 ¨gv
 , "-d")) {
 
-129 i‡(
+130 i‡(
 ¨gc
  == 1)
 
-130 
+131 
 debugArgs
  = "+";
 
-132 
+133 
 debugArgs
  = *(
 ¨gv
  + 1);
 
-133 
+134 
 ¨gCou¡
  = 2;
 
-135 } i‡(!
+136 } i‡(!
 	`°rcmp
 (*
 ¨gv
 , "-rs")) {
 
-136 
+137 
 	`ASSERT
 (
 ¨gc
  > 1);
 
-137 
+138 
 	`R™domInô
 (
 	`©oi
@@ -31671,65 +32117,65 @@ debugArgs
 ¨gv
  + 1)));
 
-139 
+140 
 øndomYõld
  = 
 TRUE
 ;
 
-140 
+141 
 ¨gCou¡
  = 2;
 
-142 #ifde‡
+143 #ifde‡
 USER_PROGRAM
 
 
-143 i‡(!
+144 i‡(!
 	`°rcmp
 (*
 ¨gv
 , "-s"))
 
-144 
+145 
 debugU£rProg
  = 
 TRUE
 ;
 
-146 #ifde‡
+147 #ifde‡
 FILESYS_NEEDED
 
 
-147 i‡(!
+148 i‡(!
 	`°rcmp
 (*
 ¨gv
 , "-f"))
 
-148 
+149 
 f‹m©
  = 
 TRUE
 ;
 
-150 #ifde‡
+151 #ifde‡
 NETWORK
 
 
-151 i‡(!
+152 i‡(!
 	`°rcmp
 (*
 ¨gv
 , "-l")) {
 
-152 
+153 
 	`ASSERT
 (
 ¨gc
  > 1);
 
-153 
+154 
 ªly
  = 
 	`©of
@@ -31737,23 +32183,23 @@ NETWORK
 ¨gv
  + 1));
 
-154 
+155 
 ¨gCou¡
  = 2;
 
-155 } i‡(!
+156 } i‡(!
 	`°rcmp
 (*
 ¨gv
 , "-m")) {
 
-156 
+157 
 	`ASSERT
 (
 ¨gc
  > 1);
 
-157 
+158 
 √äame
  = 
 	`©oi
@@ -31761,17 +32207,17 @@ NETWORK
 ¨gv
  + 1));
 
-158 
+159 
 ¨gCou¡
  = 2;
 
-163 
+164 
 	`DebugInô
 (
 debugArgs
 );
 
-164 
+165 
 °©s
  = 
 √w
@@ -31779,7 +32225,7 @@ debugArgs
 	`Sèti°ics
 ();
 
-165 
+166 
 öãºu±
  = 
 √w
@@ -31787,7 +32233,7 @@ debugArgs
 I¡îru±
 ;
 
-166 
+167 
 scheduÀr
  = 
 √w
@@ -31795,11 +32241,11 @@ scheduÀr
 	`ScheduÀr
 ();
 
-167 i‡(
+168 i‡(
 øndomYõld
 )
 
-168 
+169 
 timî
  = 
 √w
@@ -31811,13 +32257,13 @@ TimîI¡îru±H™dÀr
 øndomYõld
 );
 
-170 
+171 
 thªadToBeDe°royed
  = 
 NULL
 ;
 
-175 
+176 
 cuºítThªad
  = 
 √w
@@ -31825,7 +32271,7 @@ cuºítThªad
 	`Thªad
 ("main");
 
-176 
+177 
 cuºítThªad
 ->
 	`£tSètus
@@ -31833,25 +32279,25 @@ cuºítThªad
 RUNNING
 );
 
-178 
+179 
 öãºu±
 ->
 	`E«bÀ
 ();
 
-179 
+180 
 	`CÆlOnU£rAb‹t
 (
 CÀ™up
 );
 
-181 
+182 
 i
  = 0; i < 
 MAX_THREAD
 ; ++ i)
 
-182 
+183 
 thªad_id_is_u£d
 [
 i
@@ -31859,11 +32305,11 @@ i
 Ál£
 ;
 
-184 
+185 
 MaûCou¡
  = 0;
 
-185 
+186 
 MaûLock
  = 
 √w
@@ -31871,11 +32317,11 @@ MaûLock
 	`Sem≠h‹e
 ("MailLock", 1);
 
-187 #ifde‡
+188 #ifde‡
 USER_PROGRAM
 
 
-188 
+189 
 machöe
  = 
 √w
@@ -31885,11 +32331,11 @@ machöe
 debugU£rProg
 );
 
-191 #ifde‡
+192 #ifde‡
 FILESYS
 
 
-192 
+193 
 synchDisk
  = 
 √w
@@ -31897,11 +32343,11 @@ synchDisk
 	`SynchDisk
 ("DISK");
 
-195 #ifde‡
+196 #ifde‡
 FILESYS_NEEDED
 
 
-196 
+197 
 fûeSy°em
  = 
 √w
@@ -31911,11 +32357,11 @@ fûeSy°em
 f‹m©
 );
 
-199 #ifde‡
+200 #ifde‡
 NETWORK
 
 
-200 
+201 
 po°Offi˚
  = 
 √w
@@ -31927,85 +32373,85 @@ po°Offi˚
 ªly
 , 10);
 
-202 
+203 
 	}
 }
 
-209 
+210 
 	$CÀ™up
 ()
 
-211 
+212 
 	`¥ötf
 ("\nCleaning up...\n");
 
-212 #ifde‡
+213 #ifde‡
 NETWORK
 
 
-213 
+214 
 dñëe
  
 po°Offi˚
 ;
 
-216 #ifde‡
+217 #ifde‡
 USER_PROGRAM
 
 
-217 
+218 
 dñëe
  
 machöe
 ;
 
-220 #ifde‡
+221 #ifde‡
 FILESYS_NEEDED
 
 
-221 
+222 
 dñëe
  
 fûeSy°em
 ;
 
-224 #ifde‡
+225 #ifde‡
 FILESYS
 
 
-225 
+226 
 dñëe
  
 synchDisk
 ;
 
-228 
+229 
 dñëe
  
 timî
 ;
 
-229 
+230 
 dñëe
  
 scheduÀr
 ;
 
-230 
+231 
 dñëe
  
 öãºu±
 ;
 
-232 
+233 
 	`Exô
 (0);
 
-233 
+234 
 	}
 }
 
-234 
+235 
 	$Po°Maû
 (
 Thªad
@@ -32019,19 +32465,19 @@ d©a
 Àn
 )
 
-236 i‡(
+237 i‡(
 MaûCou¡
  > 
 MAX_MAIL_NUM
 )
 
-238 i‡(
+239 i‡(
 Àn
  > 
 MAX_MAIL_LENGTH
 )
 
-240 
+241 
 MaûMsg
  * 
 m
@@ -32039,7 +32485,7 @@ m
 √w
  MailMsg;
 
-241 
+242 
 m
  -> 
 £ndThªad
@@ -32047,7 +32493,7 @@ m
 £nd
 ;
 
-242 
+243 
 m
  -> 
 ªcvThªad
@@ -32055,7 +32501,7 @@ m
 ªcv
 ;
 
-244 
+245 
 	`mem£t
 (
 m
@@ -32065,7 +32511,7 @@ d©a
 MAX_MAIL_LENGTH
 );
 
-245 
+246 
 	`mem˝y
 (
 m
@@ -32075,17 +32521,17 @@ d©a
 Àn
 );
 
-246 
+247 
 MaûLock
  -> 
 	`P
 ();
 
-247 ++ 
+248 ++ 
 MaûCou¡
 ;
 
-248 
+249 
 ThªadMaûBox
 .
 	`push_back
@@ -32093,17 +32539,17 @@ ThªadMaûBox
 m
 );
 
-249 
+250 
 MaûLock
  -> 
 	`V
 ();
 
-251 
+252 
 	}
 }
 
-252 
+253 
 	$GëMaû
 (
 Thªad
@@ -32115,11 +32561,11 @@ Thªad
 d©a
 )
 
-254 i‡(
+255 i‡(
 MaûCou¡
  <= 0)
 
-256 i‡(
+257 i‡(
 £nd
  =
 NULL
@@ -32127,7 +32573,7 @@ NULL
 ªcv
  == NULL)
 
-259 i‡(!
+260 i‡(!
 thªad_id_is_u£d
 [
 £nd
@@ -32135,17 +32581,17 @@ thªad_id_is_u£d
 	`gëThªadId
 ()])
 
-262 
+263 
 	`¥ötf
 ("in GetMail\n");
 
-264 
+265 
 MaûLock
  -> 
 	`P
 ();
 
-266 
+267 
 °d
 ::
 ve˘‹
@@ -32163,7 +32609,7 @@ ThªadMaûBox
 	`íd
 (); ++ it)
 
-268 
+269 
 	`¥ötf
 ("£nd:%d\t%d\t\n", (*
 ô
@@ -32173,7 +32619,7 @@ ThªadMaûBox
 £nd
 );
 
-269 
+270 
 	`¥ötf
 ("ªcv:%d\t%d\t\n", (*
 ô
@@ -32183,7 +32629,7 @@ ThªadMaûBox
 ªcv
 );
 
-270 i‡((((*
+271 i‡((((*
 ô
 Ë-> 
 £ndThªad
@@ -32195,7 +32641,7 @@ ThªadMaûBox
 ªcv
 ))
 
-272 
+273 
 	`mem˝y
 (
 d©a
@@ -32205,13 +32651,13 @@ d©a
 MAX_MAIL_LENGTH
 );
 
-273 
+274 
 	`dñëe
 (*
 ô
 );
 
-274 
+275 
 ThªadMaûBox
 .
 	`îa£
@@ -32219,29 +32665,29 @@ ThªadMaûBox
 ô
 );
 
-275 
+276 
 MaûCou¡
  --;
 
-276 
+277 
 MaûLock
  -> 
 	`V
 ();
 
-282 
+283 
 	`¥ötf
 ("d©a:\t%s\n", 
 d©a
 );
 
-283 
+284 
 MaûLock
  -> 
 	`V
 ();
 
-287 
+288 
 	}
 }
 
@@ -32495,29 +32941,67 @@ FûeSy°em
 fûeSy°em
 ;
 
-68 #ifde‡
+66 ˛as†
+	cFûeE¡ry
+{
+
+67 
+	mpublic
+ :
+
+68 
+hdrSe˘‹
+;
+
+69 
+	m›íCou¡
+;
+
+70 
+Lock
+* 
+	mfûeLock
+;
+
+71 
+	mve˘‹
+<
+	mO≥nFûe
+ *> 
+	m›íFûeLi°
+;
+
+73 
+m≠
+ <, 
+FûeE¡ry
+ *>
+fûeE¡ryLi°
+;
+
+76 #ifde‡
 FILESYS
 
 
-69 
+77 
 	~"synchdisk.h
 "
 
-70 
+78 
 SynchDisk
  *
 synchDisk
 ;
 
-73 #ifde‡
+81 #ifde‡
 NETWORK
 
 
-74 
+82 
 	~"po°.h
 "
 
-75 
+83 
 Po°Offi˚
 * 
 po°Offi˚
@@ -35993,7 +36477,251 @@ numBôs
 	~"utûôy.h
 "
 
-59 
+58 
+	$RódFromFûe
+(
+O≥nFûe
+ * 
+fûe
+)
+
+60 
+buf„r
+ = 
+machöe
+ -> 
+	`RódRegi°î
+(4);
+
+61 
+size
+ = 
+machöe
+ -> 
+	`RódRegi°î
+(5);
+
+62 
+ªsu…
+ = 0;
+
+65 i‡(
+size
+ > 0 && size <= 128)
+
+67 
+ãmp
+[
+size
+];
+
+68 
+ªsu…
+ = 
+fûe
+ -> 
+	`Ród
+(
+ãmp
+, 
+size
+);
+
+69 
+i
+ = 0; i < 
+size
+; ++ i)
+
+71 
+machöe
+ -> 
+	`WrôeMem
+(
+buf„r
+ + 
+i
+, 1, ()(
+ãmp
+[i]));
+
+73 
+	`¥ötf
+("buf„r:%s.\n", 
+ãmp
+);
+
+76 
+machöe
+ -> 
+	`WrôeRegi°î
+(2, 
+ªsu…
+);
+
+77 
+machöe
+ -> 
+	`WrôeRegi°î
+(
+PªvPCReg
+, machöê-> 
+	`RódRegi°î
+(
+PCReg
+));
+
+78 
+machöe
+ -> 
+	`WrôeRegi°î
+(
+PCReg
+, machöê-> 
+	`RódRegi°î
+(
+NextPCReg
+));
+
+79 
+machöe
+ -> 
+	`WrôeRegi°î
+(
+NextPCReg
+, machöê-> 
+	`RódRegi°î
+(
+PCReg
+) + 4);
+
+81  
+ªsu…
+;
+
+82 
+	}
+}
+
+84 
+	$WrôeToFûe
+(
+O≥nFûe
+ * 
+fûe
+)
+
+86 
+buf„r
+ = 
+machöe
+ -> 
+	`RódRegi°î
+(4);
+
+87 
+size
+ = 
+machöe
+ -> 
+	`RódRegi°î
+(5);
+
+88 
+ªsu…
+ = 0;
+
+90 i‡(
+size
+ > 0 && size <= 128)
+
+92 
+ãmp
+[128];
+
+94 
+i
+ = 0; i < 
+size
+; ++ i)
+
+96 
+machöe
+ -> 
+	`RódMem
+(
+buf„r
+ + 
+i
+, 1, (*)(&
+ãmp
+[i]));
+
+98 
+ªsu…
+ = 
+fûe
+ -> 
+	`Wrôe
+(
+ãmp
+, 
+size
+);
+
+101 
+machöe
+ -> 
+	`WrôeRegi°î
+(2, 
+ªsu…
+);
+
+102 
+machöe
+ -> 
+	`WrôeRegi°î
+(
+PªvPCReg
+, machöê-> 
+	`RódRegi°î
+(
+PCReg
+));
+
+103 
+machöe
+ -> 
+	`WrôeRegi°î
+(
+PCReg
+, machöê-> 
+	`RódRegi°î
+(
+NextPCReg
+));
+
+104 
+machöe
+ -> 
+	`WrôeRegi°î
+(
+NextPCReg
+, machöê-> 
+	`RódRegi°î
+(
+PCReg
+) + 4);
+
+107  
+ªsu…
+;
+
+109 
+	}
+}
+
+112 
 	$Ex˚±i⁄H™dÀr
 (
 Ex˚±i⁄Ty≥
@@ -36001,7 +36729,7 @@ Ex˚±i⁄Ty≥
 which
 )
 
-61 
+114 
 ty≥
  = 
 machöe
@@ -36009,41 +36737,41 @@ machöe
 	`RódRegi°î
 (2);
 
-64 i‡((
+117 i‡((
 which
  =
 SysˇŒEx˚±i⁄
 )) {
 
-65 i‡(
+118 i‡(
 ty≥
  =
 SC_HÆt
 )
 
-67 
+120 
 	`DEBUG
 ('a', "Shutdown, initiated by userÖrogram.\n");
 
-68 
+121 
 öãºu±
 ->
 	`HÆt
 ();
 
-70 i‡(
+123 i‡(
 ty≥
  =
 SC_Cª©e
 )
 
-72 
+125 
 fûeName
 [
 FULL_PATH_LENGTH
  + 1] = {0};
 
-73 
+126 
 bufOff£t
  = 
 machöe
@@ -36051,13 +36779,13 @@ machöe
 	`RódRegi°î
 (4);
 
-75 
+128 
 i
  = 0; i < 
 FULL_PATH_LENGTH
 ; ++ i)
 
-77 i‡(
+130 i‡(
 machöe
  -> 
 	`RódMem
@@ -36071,19 +36799,19 @@ fûeName
 Ál£
 )
 
-81 i‡(
+134 i‡(
 fûeName
 [
 i
 ] == 0)
 
-85 
+138 
 	`¥ötf
-("READING FILENAME =%s.\n", 
+("CREATE FILENAME =%s.\n", 
 fûeName
 );
 
-86 
+139 
 ªsu…
  = ()
 fûeSy°em
@@ -36093,13 +36821,13 @@ fûeSy°em
 fûeName
 , 128);
 
-87 
+140 
 	`¥ötf
 ("ªsu… =%d.\n", 
 ªsu…
 );
 
-88 
+141 
 	`DEBUG
 ('a', "[]Cª©êfûe: %s,Ñesu… : %d\n", 
 fûeName
@@ -36107,7 +36835,7 @@ fûeName
 ªsu…
 );
 
-90 
+143 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36115,7 +36843,7 @@ machöe
 ªsu…
 );
 
-91 
+144 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36127,7 +36855,7 @@ PªvPCReg
 PCReg
 ));
 
-92 
+145 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36139,7 +36867,7 @@ PCReg
 NextPCReg
 ));
 
-93 
+146 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36151,19 +36879,19 @@ NextPCReg
 PCReg
 ) + 4);
 
-95 i‡(
+148 i‡(
 ty≥
  =
 SC_O≥n
 )
 
-97 
+150 
 fûeName
 [
 FULL_PATH_LENGTH
  + 1] = {0};
 
-98 
+151 
 bufOff£t
  = 
 machöe
@@ -36171,13 +36899,13 @@ machöe
 	`RódRegi°î
 (4);
 
-100 
+153 
 i
  = 0; i < 
 FULL_PATH_LENGTH
 ; ++ i)
 
-102 i‡(
+155 i‡(
 machöe
  -> 
 	`RódMem
@@ -36191,19 +36919,19 @@ fûeName
 Ál£
 )
 
-106 i‡(
+159 i‡(
 fûeName
 [
 i
 ] == 0)
 
-110 
+163 
 	`¥ötf
-("READING FILENAME =%s.\n", 
+("OPEN FILENAME =%s.\n", 
 fûeName
 );
 
-111 
+164 
 ªsu…
  = ()
 fûeSy°em
@@ -36213,13 +36941,13 @@ fûeSy°em
 fûeName
 );
 
-112 
+165 
 	`¥ötf
 ("thêªsu… i†%d.\n", 
 ªsu…
 );
 
-114 
+167 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36227,7 +36955,7 @@ machöe
 ªsu…
 );
 
-115 
+168 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36239,7 +36967,7 @@ PªvPCReg
 PCReg
 ));
 
-116 
+169 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36251,7 +36979,7 @@ PCReg
 NextPCReg
 ));
 
-117 
+170 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36263,13 +36991,13 @@ NextPCReg
 PCReg
 ) + 4);
 
-119 i‡(
+172 i‡(
 ty≥
  =
 SC_Clo£
 )
 
-121 
+174 
 ˛o£Fûe
  = 
 machöe
@@ -36277,27 +37005,25 @@ machöe
 	`RódRegi°î
 (4);
 
-122 i‡(
+175 i‡(
 ˛o£Fûe
  != 0)
 
-124 
+177 
 	`¥ötf
-("Clo£ FûêPoöãr: %s.\n", 
+("Clo£ FûêPoöãr: %d.\n", 
 ˛o£Fûe
 );
 
-125 
-fûeSy°em
- -> 
-	`Clo£
-((
+179 
+	`dñëe
+ (
 O≥nFûe
  *)
 ˛o£Fûe
-);
+;
 
-129 
+183 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36309,7 +37035,7 @@ PªvPCReg
 PCReg
 ));
 
-130 
+184 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36321,7 +37047,7 @@ PCReg
 NextPCReg
 ));
 
-131 
+185 
 machöe
  -> 
 	`WrôeRegi°î
@@ -36333,7 +37059,63 @@ NextPCReg
 PCReg
 ) + 4);
 
-137 
+187 i‡(
+ty≥
+ =
+SC_Ród
+)
+
+189 
+ªad
+ = 
+machöe
+ -> 
+	`RódRegi°î
+(6);
+
+191 
+O≥nFûe
+ *
+fûe
+ = (O≥nFûê*)
+ªad
+;
+
+192 
+	`¥ötf
+("Ród FILE POINTER:%d.\n", 
+ªad
+);
+
+193 
+	`RódFromFûe
+(
+fûe
+);
+
+195 i‡(
+ty≥
+ =
+SC_Wrôe
+)
+
+197 
+wrôeTy≥
+ = 
+machöe
+ -> 
+	`RódRegi°î
+(6);
+
+199 
+O≥nFûe
+ * 
+fûe
+ = (O≥nFûê*)
+wrôeTy≥
+;
+
+207 
 	`¥ötf
 ("U√x≥˘ed u£∏modêex˚±i⁄ %d %d\n", 
 which
@@ -36341,13 +37123,13 @@ which
 ty≥
 );
 
-138 
+208 
 	`ASSERT
 (
 FALSE
 );
 
-140 
+210 
 	}
 }
 
@@ -36373,13 +37155,17 @@ FALSE
 	~"synch.h
 "
 
-24 
+16 
+	~"synchC⁄sﬁe.h
+"
+
+25 
 	$SèπPro˚ss
 (*
 fûíame
 )
 
-26 
+27 
 O≥nFûe
  *
 execuèbÀ
@@ -36391,25 +37177,25 @@ fûeSy°em
 fûíame
 );
 
-27 
+28 
 AddrS∑˚
  *
 •a˚
 ;
 
-29 i‡(
+30 i‡(
 execuèbÀ
  =
 NULL
 ) {
 
-30 
+31 
 	`¥ötf
 ("U«bÀÅÿ›í fûê%s\n", 
 fûíame
 );
 
-33 
+34 
 •a˚
  = 
 √w
@@ -36419,65 +37205,65 @@ fûíame
 execuèbÀ
 );
 
-34 
+35 
 cuºítThªad
 ->
 •a˚
  = space;
 
-36 
+37 
 dñëe
  
 execuèbÀ
 ;
 
-38 
+39 
 •a˚
 ->
 	`InôRegi°îs
 ();
 
-39 
+40 
 •a˚
 ->
 	`Re°‹eSèã
 ();
 
-41 
+42 
 machöe
 ->
 	`Run
 ();
 
-42 
+43 
 	`ASSERT
 (
 FALSE
 );
 
-45 
+46 
 	}
 }
 
-50 
+51 
 C⁄sﬁe
  *
 	gc⁄sﬁe
 ;
 
-51 
+52 
 Sem≠h‹e
  *
 	gªadAvaû
 ;
 
-52 
+53 
 Sem≠h‹e
  *
 	gwrôeD⁄e
 ;
 
-59 
+60 
 	$RódAvaû
 (
 ¨g
@@ -36489,7 +37275,7 @@ Sem≠h‹e
 	}
 }
 
-60 
+61 
 	$WrôeD⁄e
 (
 ¨g
@@ -36501,7 +37287,7 @@ wrôeD⁄e
 	}
 }
 
-69 
+70 
 	$C⁄sﬁeTe°
  (*
 ö
@@ -36509,11 +37295,11 @@ wrôeD⁄e
 out
 )
 
-71 
+72 
 ch
 ;
 
-73 
+74 
 c⁄sﬁe
  = 
 √w
@@ -36529,7 +37315,7 @@ RódAvaû
 WrôeD⁄e
 , 0);
 
-74 
+75 
 ªadAvaû
  = 
 √w
@@ -36537,7 +37323,7 @@ WrôeD⁄e
 	`Sem≠h‹e
 ("readávail", 0);
 
-75 
+76 
 wrôeD⁄e
  = 
 √w
@@ -36545,13 +37331,13 @@ wrôeD⁄e
 	`Sem≠h‹e
 ("write done", 0);
 
-78 
+79 
 ªadAvaû
 ->
 	`P
 ();
 
-79 
+80 
 ch
  = 
 c⁄sﬁe
@@ -36559,7 +37345,7 @@ c⁄sﬁe
 	`GëCh¨
 ();
 
-80 
+81 
 c⁄sﬁe
 ->
 	`PutCh¨
@@ -36567,19 +37353,435 @@ c⁄sﬁe
 ch
 );
 
-81 
+82 
 wrôeD⁄e
 ->
 	`P
 () ;
 
-82 i‡(
+83 i‡(
 ch
  == 'q') ;
 
-84 
+85 
 	}
 }
+
+87 
+	$SynchC⁄sﬁeTe°
+(* 
+ö
+, * 
+out
+)
+
+89 
+ch
+;
+
+91 
+	`¥ötf
+("\nWELCOME TO LIHAO'S CONSOLE\n");
+
+92 
+SynchC⁄sﬁe
+ *
+synchC⁄sﬁe
+ = 
+√w
+ 
+	`SynchC⁄sﬁe
+();
+
+94 
+åue
+)
+
+96 
+ch
+ = 
+synchC⁄sﬁe
+ -> 
+	`GëCh¨
+();
+
+97 
+synchC⁄sﬁe
+ -> 
+	`PutCh¨
+(
+ch
+);
+
+98 i‡(
+ch
+ == 'q')
+
+103 
+	}
+}
+
+	@userprog/synchConsole.cc
+
+2 
+	~"c›yright.h
+"
+
+3 
+	~"synchC⁄sﬁe.h
+"
+
+4 
+	~"machöe.h
+"
+
+5 
+	~"sy°em.h
+"
+
+8 
+	$MySynchRódAvaû
+(
+¨g
+)
+
+10 ((
+SynchC⁄sﬁe
+ *)
+¨g
+Ë-> 
+	`RódAvaû
+();
+
+11 
+	}
+}
+
+12 
+	$MySynchWrôeD⁄e
+(
+¨g
+)
+
+14 ((
+SynchC⁄sﬁe
+ *)
+¨g
+Ë-> 
+	`WrôeD⁄e
+();
+
+15 
+	}
+}
+
+16 
+	gSynchC⁄sﬁe
+::
+	$SynchC⁄sﬁe
+(*
+öputFûe
+, * 
+ouçutFûe
+)
+
+18 
+c⁄sﬁe
+ = 
+√w
+ 
+	`C⁄sﬁe
+(
+öputFûe
+, 
+ouçutFûe
+, 
+MySynchRódAvaû
+, 
+MySynchWrôeD⁄e
+, ()
+this
+);
+
+19 
+lock
+ = 
+√w
+ 
+	`Lock
+("synchConsole");
+
+20 
+SynchRódAvaû
+ = 
+√w
+ 
+	`Sem≠h‹e
+("consoleInput", 0);
+
+21 
+SynchWrôeD⁄e
+ = 
+√w
+ 
+	`Sem≠h‹e
+("consoleOutput", 0);
+
+22 
+	}
+}
+
+23 
+	gSynchC⁄sﬁe
+::~
+	$SynchC⁄sﬁe
+()
+
+25 
+dñëe
+ 
+c⁄sﬁe
+;
+
+26 
+dñëe
+ 
+lock
+;
+
+27 
+dñëe
+ 
+SynchRódAvaû
+;
+
+28 
+dñëe
+ 
+SynchWrôeD⁄e
+;
+
+29 
+	}
+}
+
+31 
+	gSynchC⁄sﬁe
+::
+	$GëCh¨
+()
+
+33 
+ch
+;
+
+35 
+lock
+ -> 
+	`Acquúe
+();
+
+36 
+SynchRódAvaû
+ -> 
+	`P
+();
+
+37 
+ch
+ = 
+c⁄sﬁe
+ -> 
+	`GëCh¨
+();
+
+38 
+lock
+ -> 
+	`Rñó£
+();
+
+40  
+ch
+;
+
+41 
+	}
+}
+
+43 
+	gSynchC⁄sﬁe
+::
+	$PutCh¨
+(
+ch
+)
+
+45 
+lock
+ -> 
+	`Acquúe
+();
+
+46 
+c⁄sﬁe
+ -> 
+	`PutCh¨
+(
+ch
+);
+
+47 
+SynchWrôeD⁄e
+ -> 
+	`P
+();
+
+48 
+lock
+ -> 
+	`Rñó£
+();
+
+49 
+	}
+}
+
+51 
+	gSynchC⁄sﬁe
+::
+	$RódAvaû
+()
+
+53 
+SynchRódAvaû
+ -> 
+	`V
+();
+
+54 
+	}
+}
+
+56 
+	gSynchC⁄sﬁe
+::
+	$WrôeD⁄e
+()
+
+58 
+SynchWrôeD⁄e
+ -> 
+	`V
+();
+
+59 
+	}
+}
+
+	@userprog/synchConsole.h
+
+2 #i‚de‡
+SYNCHCONSOLE_H
+
+
+3 
+	#SYNCHCONSOLE_H
+
+
+	)
+
+7 
+	~"c›yright.h
+"
+
+8 
+	~"synch.h
+"
+
+9 
+	~"c⁄sﬁe.h
+"
+
+12 
+MySynchRódAvaû
+(
+¨g
+);
+
+13 
+MySynchWrôeD⁄e
+(
+¨g
+);
+
+15 ˛as†
+	cSynchC⁄sﬁe
+{
+
+16 
+	mpublic
+:
+
+17 
+SynchC⁄sﬁe
+(* 
+öputFûe
+ = 
+NULL
+, * 
+ouçutFûe
+ = NULL);
+
+18 ~
+SynchC⁄sﬁe
+();
+
+20 
+GëCh¨
+();
+
+21 
+PutCh¨
+(
+c
+);
+
+22 
+RódAvaû
+();
+
+23 
+WrôeD⁄e
+();
+
+25 
+	m¥iv©e
+:
+
+26 
+C⁄sﬁe
+ *
+c⁄sﬁe
+;
+
+27 
+Lock
+ *
+	mlock
+;
+
+28 
+Sem≠h‹e
+ * 
+	mSynchRódAvaû
+;
+
+29 
+Sem≠h‹e
+ * 
+	mSynchWrôeD⁄e
+;
 
 	@userprog/syscall.h
 
@@ -36773,8 +37975,8 @@ Yõld
 1
 .
 0
-81
-1387
+83
+1436
 bin/coff.h
 bin/coff2flat.c
 bin/coff2noff.c
@@ -36855,4 +38057,6 @@ userprog/bitmap.cc
 userprog/bitmap.h
 userprog/exception.cc
 userprog/progtest.cc
+userprog/synchConsole.cc
+userprog/synchConsole.h
 userprog/syscall.h

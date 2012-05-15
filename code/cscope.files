@@ -61,7 +61,9 @@
 ./userprog/exception.cc
 ./userprog/syscall.h
 ./userprog/bitmap.cc
+./userprog/synchConsole.h
 ./userprog/addrspace.h
+./userprog/synchConsole.cc
 ./userprog/addrspace.cc
 ./userprog/progtest.cc
 ./network/post.h

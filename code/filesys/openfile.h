@@ -60,6 +60,7 @@ class OpenFile {
 
 #else // FILESYS
 class FileHeader;
+class Lock;
 
 class OpenFile {
   public:
@@ -94,6 +95,7 @@ class OpenFile {
     int ReadInt( int* into );
     int WriteInt(int* from );
     int hdrSector;
+    Lock* fileLock;
 //END
 };
 

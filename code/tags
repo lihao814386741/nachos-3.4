@@ -129,8 +129,8 @@ DirName	filesys/directory.h	/^		char DirName[FileNameMaxLen + 1];$/;"	m	class:Di
 Directory	filesys/directory.cc	/^Directory::Directory(int size)$/;"	f	class:Directory
 Directory	filesys/directory.h	/^class Directory {$/;"	c
 DirectoryEntry	filesys/directory.h	/^class DirectoryEntry {$/;"	c
-DirectoryFileSize	filesys/filesys.cc	66;"	d	file:
-DirectorySector	filesys/filesys.cc	59;"	d	file:
+DirectoryFileSize	filesys/filesys.cc	67;"	d	file:
+DirectorySector	filesys/filesys.cc	60;"	d	file:
 Disk	machine/disk.cc	/^Disk::Disk(char* name, VoidFunctionPtr callWhenDone, int callArg)$/;"	f	class:Disk
 Disk	machine/disk.h	/^class Disk {$/;"	c
 DiskDone	machine/disk.cc	/^static void DiskDone(int arg) { ((Disk *)arg)->HandleInterrupt(); }$/;"	f	file:
@@ -163,6 +163,7 @@ FULL_PATH_LENGTH	filesys/directory.h	28;"	d
 FetchFrom	filesys/directory.cc	/^Directory::FetchFrom(OpenFile *file, bool zero)$/;"	f	class:Directory
 FetchFrom	filesys/filehdr.cc	/^FileHeader::FetchFrom(int sector)$/;"	f	class:FileHeader
 FetchFrom	userprog/bitmap.cc	/^BitMap::FetchFrom(OpenFile *file) $/;"	f	class:BitMap
+FileEntry	threads/system.h	/^class FileEntry{$/;"	c
 FileExtNameMaxLen	filesys/directory.h	27;"	d
 FileHeader	filesys/filehdr.h	/^class FileHeader {$/;"	c
 FileLength	filesys/filehdr.cc	/^FileHeader::FileLength()$/;"	f	class:FileHeader
@@ -184,13 +185,14 @@ FolderList	filesys/directory.h	/^		vector<Directory *>	 FolderList;$/;"	m	class:
 Fork	test/start.s	/^Fork:$/;"	l
 Fork	threads/thread.cc	/^Thread::Fork(VoidFunctionPtr func, int arg)$/;"	f	class:Thread
 ForkTest	threads/threadtest.cc	/^void ForkTest()$/;"	f
-FreeMapFileSize	filesys/filesys.cc	64;"	d	file:
-FreeMapSector	filesys/filesys.cc	58;"	d	file:
+FreeMapFileSize	filesys/filesys.cc	65;"	d	file:
+FreeMapSector	filesys/filesys.cc	59;"	d	file:
 FullPath	filesys/directory.h	/^		char FullPath[FULL_PATH_LENGTH + 1];$/;"	m	class:Directory
 FullPath	filesys/directory.h	/^	char FullPath[FULL_PATH_LENGTH + 1];$/;"	m	class:DirectoryEntry
 GCCDIR	test/Makefile	/^GCCDIR = ..\/..\/..\/gnu-decstation-ultrix\/decstation-ultrix\/2.95.3\/$/;"	m
 Get	network/post.cc	/^MailBox::Get(PacketHeader *pktHdr, MailHeader *mailHdr, char *data) $/;"	f	class:MailBox
 GetChar	machine/console.cc	/^Console::GetChar()$/;"	f	class:Console
+GetChar	userprog/synchConsole.cc	/^SynchConsole::GetChar()$/;"	f	class:SynchConsole
 GetMail	threads/system.cc	/^int GetMail(Thread *send, Thread *recv, char * data)$/;"	f
 HFILES	filesys/Makefile	/^HFILES = $(THREAD_H) $(USERPROG_H) $(VM_H) $(FILESYS_H)$/;"	m
 HFILES	network/Makefile	/^HFILES = $(THREAD_H) $(USERPROG_H) $(VM_H) $(FILESYS_H) $(NETWORK_H)$/;"	m
@@ -321,6 +323,7 @@ InitialPCState	threads/switch.h	144;"	d
 InitialPCState	threads/switch.h	57;"	d
 InitialPCState	threads/switch.h	87;"	d
 Initialize	threads/system.cc	/^Initialize(int argc, char **argv)$/;"	f
+InsertFileEntry	filesys/filesys.cc	/^FileSystem::InsertFileEntry(int sector)$/;"	f	class:FileSystem
 Instruction	machine/machine.h	/^class Instruction {$/;"	c
 IntOff	machine/interrupt.h	/^enum IntStatus { IntOff, IntOn };$/;"	e	enum:IntStatus
 IntOn	machine/interrupt.h	/^enum IntStatus { IntOff, IntOn };$/;"	e	enum:IntStatus
@@ -415,6 +418,8 @@ MemorySize	machine/machine.h	36;"	d
 ModifiedTime	filesys/filehdr.h	/^		int ModifiedTime;$/;"	m	class:FileHeader
 ModuloDiff	machine/disk.cc	/^Disk::ModuloDiff(int to, int from)$/;"	f	class:Disk
 Mult	machine/mipssim.cc	/^Mult(int a, int b, bool signedArith, int* hiPtr, int* loPtr)$/;"	f	file:
+MySynchReadAvail	userprog/synchConsole.cc	/^void MySynchReadAvail(int arg)$/;"	f
+MySynchWriteDone	userprog/synchConsole.cc	/^void MySynchWriteDone(int arg)$/;"	f
 NETWORK_H	machine/network.h	16;"	d
 NH	bin/execute.c	465;"	d	file:
 NNN	bin/execute.c	466;"	d	file:
@@ -436,7 +441,7 @@ NextPCReg	machine/machine.h	66;"	d
 NoException	machine/machine.h	/^enum ExceptionType { NoException,           \/\/ Everything ok!$/;"	e	enum:ExceptionType
 NoffHeader	bin/noff.h	/^} NoffHeader;$/;"	t	typeref:struct:noffHeader
 NumClear	userprog/bitmap.cc	/^BitMap::NumClear() $/;"	f	class:BitMap
-NumDirEntries	filesys/filesys.cc	65;"	d	file:
+NumDirEntries	filesys/filesys.cc	66;"	d	file:
 NumDirect	filesys/filehdr.h	20;"	d
 NumExceptionTypes	machine/machine.h	/^		     NumExceptionTypes$/;"	e	enum:ExceptionType
 NumGPRegs	machine/machine.h	62;"	d
@@ -565,6 +570,7 @@ PrintSector	machine/disk.cc	/^PrintSector (bool writing, int sector, char *data)
 PriorityTest	threads/threadtest.cc	/^void PriorityTest()$/;"	f
 Put	network/post.cc	/^MailBox::Put(PacketHeader pktHdr, MailHeader mailHdr, char *data)$/;"	f	class:MailBox
 PutChar	machine/console.cc	/^Console::PutChar(char ch)$/;"	f	class:Console
+PutChar	userprog/synchConsole.cc	/^SynchConsole::PutChar(char ch)$/;"	f	class:SynchConsole
 R	bin/d.c	27;"	d	file:
 R31	machine/mipssim.h	97;"	d
 RAND	bin/disasm.c	/^int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;$/;"	v
@@ -593,6 +599,8 @@ ReadAt	filesys/openfile.cc	/^OpenFile::ReadAt(char *into, int numBytes, int posi
 ReadAt	filesys/openfile.h	/^    int ReadAt(char *into, int numBytes, int position) { $/;"	f	class:OpenFile
 ReadAvail	network/post.cc	/^static void ReadAvail(int arg)$/;"	f	file:
 ReadAvail	userprog/progtest.cc	/^static void ReadAvail(int arg) { readAvail->V(); }$/;"	f	file:
+ReadAvail	userprog/synchConsole.cc	/^SynchConsole::ReadAvail()$/;"	f	class:SynchConsole
+ReadFromFile	userprog/exception.cc	/^int ReadFromFile(OpenFile * file)$/;"	f
 ReadFromSocket	machine/sysdep.cc	/^ReadFromSocket(int sockID, char *buffer, int packetSize)$/;"	f
 ReadInt	filesys/openfile.cc	/^int OpenFile::ReadInt(int* into)$/;"	f	class:OpenFile
 ReadMem	machine/translate.cc	/^Machine::ReadMem(int addr, int size, int *value)$/;"	f	class:Machine
@@ -617,6 +625,7 @@ Remove	filesys/filesys.cc	/^FileSystem::Remove(char *name)$/;"	f	class:FileSyste
 Remove	filesys/filesys.h	/^    bool Remove(char *name) { return Unlink(name) == 0; }$/;"	f	class:FileSystem
 Remove	threads/list.cc	/^List::Remove()$/;"	f	class:List
 Remove	threads/synchlist.cc	/^SynchList::Remove()$/;"	f	class:SynchList
+RemoveFileEntry	filesys/filesys.cc	/^FileSystem::RemoveFileEntry(int sector)$/;"	f	class:FileSystem
 RequestDone	filesys/synchdisk.cc	/^SynchDisk::RequestDone()$/;"	f	class:SynchDisk
 RestoreState	userprog/addrspace.cc	/^void AddrSpace::RestoreState() $/;"	f	class:AddrSpace
 RestoreUserState	threads/thread.cc	/^Thread::RestoreUserState()$/;"	f	class:Thread
@@ -677,6 +686,7 @@ SWITCH	threads/swtch.s	/^SWITCH:$/;"	l
 SWITCH	userprog/swtch.s	/^SWITCH:$/;"	l
 SWITCH	vm/swtch.s	/^SWITCH:$/;"	l
 SWITCH_H	threads/switch.h	18;"	d
+SYNCHCONSOLE_H	userprog/synchConsole.h	3;"	d
 SYNCHDISK_H	filesys/synchdisk.h	12;"	d
 SYNCHLIST_H	threads/synchlist.h	12;"	d
 SYNCH_H	threads/synch.h	18;"	d
@@ -759,10 +769,15 @@ StartupPCState	threads/switch.h	90;"	d
 Statistics	machine/stats.cc	/^Statistics::Statistics()$/;"	f	class:Statistics
 Statistics	machine/stats.h	/^class Statistics {$/;"	c
 SwapHeader	userprog/addrspace.cc	/^SwapHeader (NoffHeader *noffH)$/;"	f	file:
+SynchConsole	userprog/synchConsole.cc	/^SynchConsole::SynchConsole(char *inputFile, char * outputFile)$/;"	f	class:SynchConsole
+SynchConsole	userprog/synchConsole.h	/^class SynchConsole{$/;"	c
+SynchConsoleTest	userprog/progtest.cc	/^SynchConsoleTest(char * in, char * out)$/;"	f
 SynchDisk	filesys/synchdisk.cc	/^SynchDisk::SynchDisk(char* name)$/;"	f	class:SynchDisk
 SynchDisk	filesys/synchdisk.h	/^class SynchDisk {$/;"	c
 SynchList	threads/synchlist.cc	/^SynchList::SynchList()$/;"	f	class:SynchList
 SynchList	threads/synchlist.h	/^class SynchList {$/;"	c
+SynchReadAvail	userprog/synchConsole.h	/^		Semaphore * SynchReadAvail;$/;"	m	class:SynchConsole
+SynchWriteDone	userprog/synchConsole.h	/^		Semaphore * SynchWriteDone;$/;"	m	class:SynchConsole
 SyscallException	machine/machine.h	/^		     SyscallException,      \/\/ A program executed a system call.$/;"	e	enum:ExceptionType
 SystemMode	machine/interrupt.h	/^enum MachineStatus {IdleMode, SystemMode, UserMode};$/;"	e	enum:MachineStatus
 SystemTick	machine/stats.h	53;"	d
@@ -846,12 +861,14 @@ WriteBack	userprog/bitmap.cc	/^BitMap::WriteBack(OpenFile *file)$/;"	f	class:Bit
 WriteDone	machine/console.cc	/^Console::WriteDone()$/;"	f	class:Console
 WriteDone	network/post.cc	/^static void WriteDone(int arg)$/;"	f	file:
 WriteDone	userprog/progtest.cc	/^static void WriteDone(int arg) { writeDone->V(); }$/;"	f	file:
+WriteDone	userprog/synchConsole.cc	/^SynchConsole::WriteDone()$/;"	f	class:SynchConsole
 WriteFile	machine/sysdep.cc	/^WriteFile(int fd, char *buffer, int nBytes)$/;"	f
 WriteInt	filesys/openfile.cc	/^int OpenFile::WriteInt( int* from )$/;"	f	class:OpenFile
 WriteMem	machine/translate.cc	/^Machine::WriteMem(int addr, int size, int value)$/;"	f	class:Machine
 WriteRegister	machine/machine.cc	/^void Machine::WriteRegister(int num, int value)$/;"	f	class:Machine
 WriteRequest	machine/disk.cc	/^Disk::WriteRequest(int sectorNumber, char* data)$/;"	f	class:Disk
 WriteSector	filesys/synchdisk.cc	/^SynchDisk::WriteSector(int sectorNumber, char* data)$/;"	f	class:SynchDisk
+WriteToFile	userprog/exception.cc	/^int WriteToFile(OpenFile * file)$/;"	f
 Yield	test/start.s	/^Yield:$/;"	l
 Yield	threads/thread.cc	/^Thread::Yield ()$/;"	f	class:Thread
 YieldOnReturn	machine/interrupt.cc	/^Interrupt::YieldOnReturn()$/;"	f	class:Interrupt
@@ -922,6 +939,7 @@ column	bin/out.c	/^static column = 1;$/;"	v	file:
 con_nuconsumer	threads/threadtest.h	/^int con_nuconsumer = 0;$/;"	v
 con_number	threads/threadtest.cc	/^int con_number = 0;$/;"	v
 console	userprog/progtest.cc	/^static Console *console;$/;"	v	file:
+console	userprog/synchConsole.h	/^		Console *console;$/;"	m	class:SynchConsole
 consumer	threads/threadtest.cc	/^void consumer(int a)$/;"	f
 consumer_condition	threads/threadtest.cc	/^Condition* consumer_condition = new Condition("conc");$/;"	v
 consumer_lock	threads/threadtest.cc	/^Lock* consumer_lock = new Lock("conl");$/;"	v
@@ -977,6 +995,9 @@ f_timdat	bin/coff.h	/^        long            f_timdat;       \/* time & date st
 false	bin/execute.c	16;"	d	file:
 fetch	bin/int.h	19;"	d
 file	filesys/openfile.h	/^    int file;$/;"	m	class:OpenFile
+fileEntryList	threads/system.cc	/^map<int, FileEntry *> fileEntryList;$/;"	v
+fileLock	filesys/openfile.h	/^    Lock* fileLock;$/;"	m	class:OpenFile
+fileLock	threads/system.h	/^		Lock* fileLock;$/;"	m	class:FileEntry
 fileSystem	threads/system.cc	/^FileSystem  *fileSystem;$/;"	v
 filehdr	bin/coff.h	/^struct filehdr {$/;"	s
 filehdr	bin/out.c	/^struct filehdr filehdr;$/;"	v	typeref:struct:filehdr
@@ -1018,7 +1039,8 @@ handlerArg	machine/console.h	/^    int handlerArg;			\/\/ argument to be passed 
 handlerArg	machine/disk.h	/^    int handlerArg;			\/\/ Argument to interrupt handler $/;"	m	class:Disk
 handlerArg	machine/network.h	/^    int handlerArg;		\/\/ Argument to be passed to interrupt handler$/;"	m	class:Network
 hdr	filesys/openfile.h	/^    FileHeader *hdr;			\/\/ Header for this file $/;"	m	class:OpenFile
-hdrSector	filesys/openfile.h	/^	int hdrSector;$/;"	m	class:OpenFile
+hdrSector	filesys/openfile.h	/^    int hdrSector;$/;"	m	class:OpenFile
+hdrSector	threads/system.h	/^		int hdrSector;$/;"	m	class:FileEntry
 henter	bin/execute.c	/^henter(n)$/;"	f
 henters	bin/execute.c	/^void henters(n, hist)$/;"	f
 hist	bin/execute.c	/^static int hist[NNNN];$/;"	v	file:
@@ -1084,6 +1106,7 @@ load_section	bin/disasm.c	/^load_section(hd)$/;"	f
 lock	filesys/synchdisk.h	/^    Lock *lock;		  		\/\/ Only one read\/write request$/;"	m	class:SynchDisk
 lock	threads/synch.h	/^    Lock* lock;$/;"	m	class:Condition
 lock	threads/synchlist.h	/^    Lock *lock;			\/\/ enforce mutual exclusive access to the list$/;"	m	class:SynchList
+lock	userprog/synchConsole.h	/^		Lock *lock;$/;"	m	class:SynchConsole
 lockUser	threads/synch.h	/^    Thread * lockUser;$/;"	m	class:Lock
 longdis	bin/d.c	/^int longdis = 1;$/;"	v
 m_alloc	bin/disasm.c	/^int *m_alloc(n)$/;"	f
@@ -1158,6 +1181,8 @@ opCode	machine/machine.h	/^    char opCode;     \/\/ Type of instruction.  This 
 opCode	machine/mipssim.h	/^    int opCode;		\/* Translated op code. *\/$/;"	m	struct:OpInfo
 opStrings	machine/mipssim.h	/^static struct OpString opStrings[] = {$/;"	v	typeref:struct:OpString
 opTable	machine/mipssim.h	/^static OpInfo opTable[] = {$/;"	v
+openCount	threads/system.h	/^		int openCount;$/;"	m	class:FileEntry
+openFileList	threads/system.h	/^		vector<OpenFile *> openFileList;$/;"	m	class:FileEntry
 outfile	bin/out.c	/^static FILE *outfile = stdout;$/;"	v	file:
 packetAvail	machine/network.h	/^    bool packetAvail;		\/\/ Packet has arrived, can be pulled off of$/;"	m	class:Network
 pageTable	machine/machine.h	/^    TranslationEntry *pageTable;$/;"	m	class:Machine
@@ -1381,6 +1406,7 @@ z	threads/switch.s	/^#define z       $0      \/* zero register *\/$/;"	d
 ~PostOffice	network/post.cc	/^PostOffice::~PostOffice()$/;"	f	class:PostOffice
 ~Scheduler	threads/scheduler.cc	/^Scheduler::~Scheduler()$/;"	f	class:Scheduler
 ~Semaphore	threads/synch.cc	/^Semaphore::~Semaphore()$/;"	f	class:Semaphore
+~SynchConsole	userprog/synchConsole.cc	/^SynchConsole::~SynchConsole()$/;"	f	class:SynchConsole
 ~SynchDisk	filesys/synchdisk.cc	/^SynchDisk::~SynchDisk()$/;"	f	class:SynchDisk
 ~SynchList	threads/synchlist.cc	/^SynchList::~SynchList()$/;"	f	class:SynchList
 ~Thread	threads/thread.cc	/^Thread::~Thread()$/;"	f	class:Thread
