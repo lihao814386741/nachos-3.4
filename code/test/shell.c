@@ -9,12 +9,11 @@ main()
     char prompt[2], ch, buffer[60];
     int i;
 
-    prompt[0] = '-';
-    prompt[1] = '-';
+    prompt[0] = '#';
 
     while( 1 )
     {
-	Write(prompt, 2, output);
+	Write(prompt, 1, output);
 
 	i = 0;
 	
@@ -30,6 +29,8 @@ main()
 		newProc = Exec(buffer);
 		Join(newProc);
 	}
+	if (buffer[0] == 'q')
+		break;
     }
 }
 

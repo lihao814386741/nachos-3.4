@@ -43,8 +43,10 @@
 ./test/halt.c
 ./test/hello.c
 ./test/sort.c
+./test/write.c
 ./test/matmult.c
 ./test/start.c
+./test/read.c
 ./test/shell.c
 ./filesys/synchdisk.h
 ./filesys/directory.h

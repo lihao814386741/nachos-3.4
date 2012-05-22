@@ -1,0 +1,12 @@
+#!/bin/sh
+
+
+
+
+./vm/nachos -f
+./vm/nachos -cp test/shell shell
+./vm/nachos -cp test/write write
+./vm/nachos -cp test/read read
+./vm/nachos -cp test/hello hello
+./vm/nachos -cp test/matmult mat
+./vm/nachos -l

@@ -102,6 +102,7 @@ public:
 
 	Lock * InsertFileEntry(int sector);
 	bool RemoveFileEntry(int sector);
+	OpenFile * SwapFile;
   //END
 };
 

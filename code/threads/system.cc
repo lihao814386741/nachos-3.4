@@ -27,6 +27,9 @@ int MailCount;
 std::vector<MailMsg *> ThreadMailBox;
 Semaphore * MailLock;
 
+std::map<int, Thread*> ThreadList;
+
+
 #ifdef FILESYS_NEEDED
 FileSystem  *fileSystem;
 map<int, FileEntry *> fileEntryList;
@@ -44,6 +47,12 @@ Machine *machine;	// user program memory and registers
 PostOffice *postOffice;
 #endif
 
+#ifdef VM
+#include "../userprog/bitmap.h"
+#include "../userprog/addrspace.h"
+BitMap * physicalMemoryMap;
+BitMap * virtualMemoryMap;
+#endif
 
 // External definition, to allow us to take a pointer to this function
 extern void Cleanup();
@@ -195,6 +204,10 @@ Initialize(int argc, char **argv)
 
 #ifdef FILESYS_NEEDED
     fileSystem = new FileSystem(format);
+#endif
+#ifdef VM
+	physicalMemoryMap = new BitMap(32);
+	virtualMemoryMap = new BitMap(256);
 #endif
 
 #ifdef NETWORK

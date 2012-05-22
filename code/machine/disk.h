@@ -51,6 +51,7 @@
 #define NumTracks 		32	// number of tracks per disk
 #define NumSectors 		(SectorsPerTrack * NumTracks)
 					// total # of sectors per disk
+#define SECTOR_SIZE 128
 
 class Disk {
   public:

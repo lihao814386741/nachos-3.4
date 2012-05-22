@@ -211,12 +211,14 @@ OpenFile::WriteAt(char *from, int numBytes, int position)
     bcopy(from, &buf[position - (firstSector * SectorSize)], numBytes);
 
 // write modified sectors back
+//EDIT BY LIHAO
 	fileLock -> Acquire();
     for (i = firstSector; i <= lastSector; i++)	
         synchDisk->WriteSector(hdr->ByteToSector(i * SectorSize), 
 					&buf[(i - firstSector) * SectorSize]);
     delete [] buf;
     	fileLock -> Release();
+	//END
     return numBytes;
 }
 

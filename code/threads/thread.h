@@ -64,6 +64,9 @@ enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED, SUSPENDING};
 
 // external function, dummy routine whose sole job is to call Thread::Print
 extern void ThreadPrint(int arg);	 
+class Lock;
+class Condition;
+class Semphore;
 
 // The following class defines a "thread control block" -- which
 // represents a single thread of execution.
@@ -84,6 +87,10 @@ class Thread {
     int machineState[MachineStateSize];  // all registers except for stackTop
 
   public:
+    Lock* JoinLock;
+    Condition* JoinCond;
+    int JoinNum;
+
     Thread(char* debugName);		// initialize a Thread 
     ~Thread(); 				// deallocate a Thread
 					// NOTE -- thread being deleted

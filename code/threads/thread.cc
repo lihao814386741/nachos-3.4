@@ -96,7 +96,6 @@ void
 Thread::Fork(VoidFunctionPtr func, int arg)
 {
    
-    StackAllocate(func, arg);
 
  //   this -> thread_id = find_free_thread_id();
  //    
@@ -105,6 +104,7 @@ Thread::Fork(VoidFunctionPtr func, int arg)
 	  name, (int) func, arg, thread_id);
     ASSERT(this -> thread_id != -1);
     IntStatus oldLevel = interrupt->SetLevel(IntOff);
+    StackAllocate(func, arg);
     scheduler->ReadyToRun(this);	// ReadyToRun assumes that interrupts 
 					// are disabled!
     (void) interrupt->SetLevel(oldLevel);

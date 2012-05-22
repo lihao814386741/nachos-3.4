@@ -428,7 +428,9 @@ system.o: ../threads/system.cc ../threads/copyright.h ../threads/system.h \
  /usr/include/c++/4.6/bits/stl_bvector.h \
  /usr/include/c++/4.6/bits/vector.tcc ../filesys/synchdisk.h \
  ../machine/disk.h ../threads/synch.h ../network/post.h \
- ../machine/network.h ../threads/synchlist.h
+ ../machine/network.h ../threads/synchlist.h \
+ ../threads/../userprog/bitmap.h ../filesys/openfile.h \
+ ../threads/../userprog/addrspace.h
 thread.o: ../threads/thread.cc ../threads/copyright.h ../threads/thread.h \
  ../threads/utility.h ../threads/bool.h ../machine/sysdep.h \
  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
@@ -1052,7 +1054,7 @@ addrspace.o: ../userprog/addrspace.cc ../threads/copyright.h \
  /usr/include/c++/4.6/bits/vector.tcc ../filesys/synchdisk.h \
  ../machine/disk.h ../threads/synch.h ../network/post.h \
  ../machine/network.h ../threads/synchlist.h ../userprog/addrspace.h \
- ../bin/noff.h
+ ../bin/noff.h ../userprog/../userprog/bitmap.h ../filesys/openfile.h
 bitmap.o: ../userprog/bitmap.cc ../threads/copyright.h \
  ../userprog/bitmap.h ../threads/utility.h ../threads/copyright.h \
  ../threads/bool.h ../machine/sysdep.h /usr/include/stdio.h \
@@ -1069,9 +1071,10 @@ bitmap.o: ../userprog/bitmap.cc ../threads/copyright.h \
  /usr/include/i386-linux-gnu/bits/sys_errlist.h /usr/include/string.h \
  /usr/include/xlocale.h ../filesys/openfile.h
 exception.o: ../userprog/exception.cc ../threads/copyright.h \
- ../threads/system.h ../threads/copyright.h ../threads/utility.h \
- ../threads/bool.h ../machine/sysdep.h /usr/include/stdio.h \
- /usr/include/features.h /usr/include/i386-linux-gnu/bits/predefs.h \
+ ../userprog/syscall.h ../threads/system.h ../threads/copyright.h \
+ ../threads/utility.h ../threads/bool.h ../machine/sysdep.h \
+ /usr/include/stdio.h /usr/include/features.h \
+ /usr/include/i386-linux-gnu/bits/predefs.h \
  /usr/include/i386-linux-gnu/sys/cdefs.h \
  /usr/include/i386-linux-gnu/bits/wordsize.h \
  /usr/include/i386-linux-gnu/gnu/stubs.h \
@@ -1159,9 +1162,9 @@ exception.o: ../userprog/exception.cc ../threads/copyright.h \
  /usr/include/c++/4.6/bits/stl_bvector.h \
  /usr/include/c++/4.6/bits/vector.tcc ../filesys/synchdisk.h \
  ../machine/disk.h ../threads/synch.h ../network/post.h \
- ../machine/network.h ../threads/synchlist.h ../userprog/syscall.h \
- ../threads/thread.h ../filesys/filehdr.h ../userprog/bitmap.h \
- ../filesys/openfile.h ../filesys/directory.h
+ ../machine/network.h ../threads/synchlist.h ../threads/thread.h \
+ ../filesys/filehdr.h ../userprog/bitmap.h ../filesys/openfile.h \
+ ../filesys/directory.h
 progtest.o: ../userprog/progtest.cc ../threads/copyright.h \
  ../threads/system.h ../threads/copyright.h ../threads/utility.h \
  ../threads/bool.h ../machine/sysdep.h /usr/include/stdio.h \

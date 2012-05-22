@@ -51,6 +51,7 @@ extern Interrupt *interrupt;			// interrupt status
 extern Statistics *stats;			// performance metrics
 extern Timer *timer;				// the hardware alarm clock
 
+extern std::map<int, Thread*> ThreadList;  
 extern bool thread_id_is_used[MAX_THREAD + 1];
 extern char *data[MAX_THREAD];
 extern void freeThreadId(int thread_id);
@@ -81,6 +82,12 @@ extern SynchDisk   *synchDisk;
 #ifdef NETWORK
 #include "post.h"
 extern PostOffice* postOffice;
+#endif
+
+#ifdef VM
+class BitMap;
+extern BitMap * physicalMemoryMap;
+extern BitMap * virtualMemoryMap;
 #endif
 
 #endif // SYSTEM_H

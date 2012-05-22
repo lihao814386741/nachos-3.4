@@ -31,10 +31,19 @@
 #define PageSize 	SectorSize 	// set the page size equal to
 					// the disk sector size, for
 					// simplicity
-
 #define NumPhysPages    32
-#define MemorySize 	(NumPhysPages * PageSize)
+#define MemorySize (NumPhysPages * PageSize)
+//EDIT BY LIHAO
+#define PAGE_SIZE SECTOR_SIZE
+#define NUM_PHYS_PAGES    32
+#define MEMORY_SIZE 	(NUM_PHYS_PAGES * PAGE_SIZE)
+//END
 #define TLBSize		4		// if there is a TLB, make it small
+
+#ifdef VM
+#define VM_PAGE_NUM	256		
+#define VM_SIZE		((VM_PAGE_NUM) * (PageSize))
+#endif
 
 enum ExceptionType { NoException,           // Everything ok!
 		     SyscallException,      // A program executed a system call.
